@@ -21,7 +21,7 @@ public interface Mutual{
         }
         Main.PRIMARYSTAGE.getScene().setOnKeyPressed(e -> {
             switch(e.getCode()){
-                // Z X, J K I L
+                // Z X, J L I K
                 // B R, < > ^ v
 
                 case Z: // Blue
@@ -34,14 +34,14 @@ public interface Mutual{
                 case J: // <
                     print("< key pressed");
                     break;
-                case K: // >
+                case L: // >
                     print("> key pressed");
                     break;
 
                 case I: // ^
                     print("^ key pressed");
                     break;
-                case L: // v
+                case K: // v
                     print("v  key pressed");
                     break;
 

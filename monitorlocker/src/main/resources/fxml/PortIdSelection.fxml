@@ -69,7 +69,7 @@
                         </Polygon>
                      </children>
                   </FlowPane>
-                  <HBox prefHeight="465.0" prefWidth="994.0">
+                  <HBox prefHeight="538.0" prefWidth="994.0">
                      <children>
                         <GridPane prefHeight="504.0" prefWidth="260.0">
                            <columnConstraints>
@@ -86,18 +86,18 @@
                               <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                            </HBox.margin>
                            <children>
-                              <Pane fx:id="bl_port1" maxHeight="50.0" maxWidth="50.0" opacity="0.2" style="-fx-background-color: #30a6ff;" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
+                              <Pane fx:id="bl_port1" maxHeight="50.0" maxWidth="50.0" opacity="0.2" style="-fx-background-color: #30a6ff;" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                                  <GridPane.margin>
                                     <Insets />
                                  </GridPane.margin>
                               </Pane>
-                              <Pane fx:id="bl_port2" layoutX="39.0" layoutY="30.0" maxHeight="50.0" maxWidth="50.0" opacity="0.2" style="-fx-background-color: #30a6ff;" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                              <Pane fx:id="bl_port3" layoutX="11.0" layoutY="138.0" maxHeight="50.0" maxWidth="50.0" opacity="0.2" style="-fx-background-color: #ff7373;" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                              <Pane fx:id="bl_port4" layoutX="11.0" layoutY="247.0" maxHeight="50.0" maxWidth="50.0" opacity="0.2" style="-fx-background-color: #30a6ff;" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-                              <Pane fx:id="bl_port5" layoutX="11.0" layoutY="355.0" maxHeight="50.0" maxWidth="50.0" opacity="0.2" style="-fx-background-color: #ff7373;" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" />
-                              <Pane fx:id="bl_port6" layoutX="137.0" layoutY="30.0" maxHeight="50.0" maxWidth="50.0" style="-fx-background-color: #30a6ff;" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-                              <Pane fx:id="bl_port7" layoutX="137.0" layoutY="138.0" maxHeight="50.0" maxWidth="50.0" opacity="0.2" style="-fx-background-color: #ff7373;" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
-                              <Pane fx:id="bl_port8" layoutX="137.0" layoutY="247.0" maxHeight="50.0" maxWidth="50.0" opacity="0.2" style="-fx-background-color: #ff7373;" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+                              <Pane fx:id="bl_port2" layoutX="39.0" layoutY="30.0" maxHeight="50.0" maxWidth="50.0" opacity="0.2" style="-fx-background-color: #30a6ff;" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                              <Pane fx:id="bl_port3" layoutX="11.0" layoutY="138.0" maxHeight="50.0" maxWidth="50.0" opacity="0.2" style="-fx-background-color: #ff7373;" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                              <Pane fx:id="bl_port4" layoutX="11.0" layoutY="247.0" maxHeight="50.0" maxWidth="50.0" opacity="0.2" style="-fx-background-color: #30a6ff;" GridPane.halignment="LEFT" GridPane.valignment="CENTER" />
+                              <Pane fx:id="bl_port5" layoutX="11.0" layoutY="355.0" maxHeight="50.0" maxWidth="50.0" opacity="0.2" style="-fx-background-color: #ff7373;" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                              <Pane fx:id="bl_port6" layoutX="137.0" layoutY="30.0" maxHeight="50.0" maxWidth="50.0" style="-fx-background-color: #30a6ff;" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+                              <Pane fx:id="bl_port7" layoutX="137.0" layoutY="138.0" maxHeight="50.0" maxWidth="50.0" opacity="0.2" style="-fx-background-color: #ff7373;" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+                              <Pane fx:id="bl_port8" layoutX="137.0" layoutY="247.0" maxHeight="50.0" maxWidth="50.0" opacity="0.2" style="-fx-background-color: #ff7373;" GridPane.columnIndex="1" GridPane.halignment="RIGHT" />
                            </children>
                         </GridPane>
                         <AnchorPane prefHeight="474.0" prefWidth="427.0">
@@ -105,9 +105,9 @@
                               <Insets bottom="15.0" right="15.0" top="15.0" />
                            </HBox.margin>
                            <children>
-                              <Text fx:id="txt_operationAvailableState" layoutX="40.0" layoutY="407.0" strokeType="OUTSIDE" strokeWidth="0.0" text="持ち出し可能" textAlignment="CENTER" wrappingWidth="345.3720703125" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.22792968750002">
+                              <Text fx:id="txt_operationAvailableState" layoutX="40.0" layoutY="407.0" strokeType="OUTSIDE" strokeWidth="0.0" text="１２３４５６７８９０１２３４５６７８９０" textAlignment="CENTER" wrappingWidth="400.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
                                  <font>
-                                    <Font size="51.0" />
+                                    <Font size="38.0" />
                                  </font>
                               </Text>
                               <Text fx:id="txt_portId" layoutX="102.0" layoutY="300.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1" textAlignment="CENTER" wrappingWidth="220.5367431640625">
