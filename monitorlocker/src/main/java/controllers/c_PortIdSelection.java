@@ -13,14 +13,11 @@ import com.fasterxml.jackson.databind.JsonNode;
 import controllers.common.Screen;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 public class c_PortIdSelection implements Screen, Initializable {
 
-    @FXML private Label label_modeSwapLend;
-    @FXML private Label label_modeSwapReturn;
 
     // TODO: port数を可変長にしたい　このファイルは現時点すべて8でハードコードされている
     @FXML private Pane bl_port1;
@@ -34,11 +31,12 @@ public class c_PortIdSelection implements Screen, Initializable {
 
     @FXML private AnchorPane mainPane;
     @FXML private Text txt_portId;
-    @FXML private Text txt_operationAvailableState;
+    @FXML private Text txt_portLendingState;
+    @FXML private Text btntxt_nextStepInteraction;
+
 
 
     private int selectedPortId = 0;
-    private boolean isOperationAvailable = false;
     private boolean isLendMode = true;
     Map<Integer, String> lendingPortsMap;
     //---------------------------------------------------------------------//
@@ -56,53 +54,42 @@ public class c_PortIdSelection implements Screen, Initializable {
             // organize apiResponce - { port_id: user_name, ... }
             lendingPortsMap = new HashMap<>();
             for(JsonNode result : apiResponce.get("result"))
-            lendingPortsMap.put(result.get("port_id").asInt(), result.get("user_name").asText());
+                lendingPortsMap.put(result.get("port_id").asInt(), result.get("user_name").asText());
+            lendingPortsMap.put(6, "１２３４５６７８９０１２３４５６７");
             print(lendingPortsMap);
         }catch(Exception e){
             e.printStackTrace();
         }
+
+        selectedPortId = 0;
+        isLendMode = true;
+        movePortCursor(0,0);
     }
 
-    private void changeSelectedPortId( int change ){
 
-        // update selectedPortId
+    private void movePortCursor(int _x, int _y){
+        final int boundX=1, boundY=3;
+        // get cursor position
+        int x = selectedPortId % (boundX+1);
+        int y = selectedPortId / (boundX+1);
+        // move cursor
+        x+=_x; y+=_y;
+        x= Math.max(0, Math.min(x, boundX));
+        y= Math.max(0, Math.min(y, boundY));
+        // set cursor position
+        selectedPortId = x + y * (boundX+1);
 
-        if (lendingPortsMap == null) {
-            print("changeSelectedPortId : organizedApiResponce is null");
-            return;
-        }
-
-        int _selectedPortId = (selectedPortId + change + 8) % 8;
-        change = change>=0 ? +1 : -1;
-        int searchLimit = 8;
-        while( lendingPortsMap.containsKey(_selectedPortId) == isLendMode && searchLimit-- > 0){
-            // loop until a port suitable for the mode is found
-            _selectedPortId = (_selectedPortId + change +8 ) % 8;
-        }
-
-        if(searchLimit == 0){
-            isOperationAvailable = false;
-            _selectedPortId = -1;
-        }else{
-            isOperationAvailable = true;
-        }
-        selectedPortId = _selectedPortId;
-
-        // update GUI
-
+        // apply
         txt_portId.setText(String.valueOf(selectedPortId + 1));
+        setMode(!lendingPortsMap.containsKey(selectedPortId));
         
-        String _txt = "";
-        if(isOperationAvailable){
-            if(isLendMode) _txt = "持ち出し可能";
-            else           _txt = String.format("%.13s%sさんが使用中", 
-                                    lendingPortsMap.get(selectedPortId),
-                                    lendingPortsMap.get(selectedPortId).length() > 13 ? "…" : "");
-        }else{
-            if(isLendMode) _txt = "持ち出せるモニターが\nありません";
-            else           _txt = "使用中のモニターが\nありません";
-        }
-        txt_operationAvailableState.setText(_txt);
+        if(isLendMode)
+            txt_portLendingState.setText("持ち出し可能");
+        else
+            txt_portLendingState.setText(
+                String.format("%.13s%sさんが使用中", 
+                lendingPortsMap.get(selectedPortId),
+                lendingPortsMap.get(selectedPortId).length() > 13 ? "…" : "") );
 
         Pane[] portPanes = {bl_port1, bl_port2, bl_port3, bl_port4, bl_port5, bl_port6, bl_port7, bl_port8};
         for(int i=0; i<portPanes.length; i++){
@@ -113,13 +100,12 @@ public class c_PortIdSelection implements Screen, Initializable {
     }
 
 
-    private void swapMode(){
-        isLendMode = !isLendMode;
-        label_modeSwapLend.setStyle("-fx-background-color: " + (isLendMode ? Color.blue : Color.none));
-        label_modeSwapReturn.setStyle("-fx-background-color: " + (!isLendMode ? Color.red : Color.none));
-        selectedPortId = 0;
-        changeSelectedPortId(0);
+    private void setMode(boolean _isLendMode){
+        isLendMode = _isLendMode;
+        btntxt_nextStepInteraction.setText(isLendMode? "持出" : "返却");
     }
+
+
     @Override
     public void updateKeyBinding(){        
         if( Main.PRIMARYSTAGE.getScene() == null){
@@ -138,17 +124,17 @@ public class c_PortIdSelection implements Screen, Initializable {
                     break;
 
                 case J: // <
-                    swapMode();
+                    movePortCursor(-1,0);
                     break;
                 case L: // >
-                    swapMode();
+                    movePortCursor(+1,0);
                     break;
 
                 case I: // ^
-                    changeSelectedPortId(+1);
+                    movePortCursor(0,-1);
                     break;
                 case K: // v
-                    changeSelectedPortId(-1);
+                    movePortCursor(0,+1);
                     break;
 
                 default:
