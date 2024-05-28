@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox id="resource" fx:id="resource_element" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" prefHeight="728.0" prefWidth="687.0" stylesheets="@../styles/application.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <StackPane id="remain_bar" prefHeight="5.0" prefWidth="634.0">
+         <children>
+            <Text fx:id="resource_name" strokeType="OUTSIDE" strokeWidth="0.0" text="{resource_name}" textAlignment="CENTER" wrappingWidth="482.0625">
+               <font>
+                  <Font name="System Bold" size="48.0" />
+               </font>
+            </Text>
+         </children>
+         <VBox.margin>
+            <Insets bottom="20.0" top="30.0" />
+         </VBox.margin>
+      </StackPane>
+      <AnchorPane id="element" fx:id="remain_bar" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="88.0" prefWidth="636.0" stylesheets="@../styles/application.css">
+         <VBox.margin>
+            <Insets bottom="30.0" />
+         </VBox.margin>
+         <children>
+            <HBox prefHeight="88.0" prefWidth="682.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Pane id="remain_body" fx:id="remain_body" maxWidth="650.0" minWidth="0.0" prefHeight="88.0" prefWidth="650.0" style="-fx-background-color: #75c4ff;" />
+                  <ImageView id="remain_terminal" fx:id="remain_terminal" fitHeight="88.0" fitWidth="42.0" pickOnBounds="true" HBox.hgrow="NEVER">
+                     <image>
+                        <Image url="@img/gauge_edge1.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <FlowPane alignment="CENTER" columnHalignment="CENTER" layoutX="95.2" layoutY="11.0" prefHeight="66.0" prefWidth="476.0" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="11.0">
+               <children>
+                  <Text layoutX="10.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="残り" textAlignment="RIGHT" wrappingWidth="93.26253151893616">
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                     <FlowPane.margin>
+                        <Insets top="15.0" />
+                     </FlowPane.margin>
+                  </Text>
+                  <Text fx:id="resource_remain" boundsType="VISUAL" strokeType="OUTSIDE" strokeWidth="0.0" text="{remain}" textAlignment="CENTER" wrappingWidth="300.0">
+                     <font>
+                        <Font name="System Bold" size="64.0" />
+                     </font>
+                     <FlowPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </FlowPane.margin>
+                  </Text>
+                  <Text layoutX="10.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="使用可能" wrappingWidth="178.86242580413818">
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                     <FlowPane.margin>
+                        <Insets top="15.0" />
+                     </FlowPane.margin>
+                  </Text>
+               </children>
+            </FlowPane>
+            <ImageView fitHeight="7.0" fitWidth="7.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <image>
+                  <Image url="@img/gauge_edge0.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="7.0" fitWidth="7.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+               <image>
+                  <Image url="@img/gauge_edge0.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="7.0" fitWidth="7.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0">
+               <image>
+                  <Image url="@img/gauge_edge0.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="7.0" fitWidth="7.0" layoutX="683.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" rotate="180.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.rightAnchor="-1.0">
+               <image>
+                  <Image url="@img/gauge_edge0.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </padding>
+</VBox>
