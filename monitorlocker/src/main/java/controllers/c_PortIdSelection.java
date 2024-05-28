@@ -3,7 +3,11 @@ import Application.Main;
 import Application.Objects.HttpIO;
 
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
+
+import com.fasterxml.jackson.databind.JsonNode;
 
 import controllers.common.Screen;
 import javafx.fxml.FXML;
@@ -35,13 +39,16 @@ public class c_PortIdSelection implements Screen, Initializable {
     	print("PortIdSelection initializing...");
 
         print("Getting Lending State...");
-        //TODO: Get Lending State
-        // dict ... 使用中のポートID : 使用中のユーザーのuser_id
+        // Get Lending State
         try{
             HttpIO get = new HttpIO("GET", "http://127.0.0.1:5000/api/portlendingstate/fetch");
-            String result = get.get();
-            print(result);
-            //TODO : organize the result to dict
+            JsonNode apiResponce = get.get();
+            
+            // organize apiResponce - { port_id: user_id, ... }
+            Map<Integer, Integer> organizedApiResponce = new HashMap<>();
+            for(JsonNode result : apiResponce.get("result"))
+                organizedApiResponce.put(result.get("port_id").asInt(), result.get("user_id").asInt());
+            print(organizedApiResponce);
         }catch(Exception e){
             e.printStackTrace();
         }
