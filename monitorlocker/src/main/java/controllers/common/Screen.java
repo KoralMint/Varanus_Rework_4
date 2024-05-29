@@ -3,8 +3,9 @@ package controllers.common;
 // import
 
 /* -- 機能、および実装したい物 --
- * [ ] 別のScreenに遷移する TODO
- * [ ]   遷移時に情報を受信/送信できる
+ * [x] 別のScreenに遷移する TODO
+ * [-]   遷移時に情報を受信できる
+ * [-]   同様、送信できる
  * [ ] Popupを出せる
  * [ ]   Popupにも情報を渡せる
  * [ ]   Popupが閉じられるまで処理を待機する
@@ -13,5 +14,6 @@ package controllers.common;
  */
 
 public interface Screen extends Mutual{
-    
+    public void changeScreen(String fxml);
+    //TODO popup
 }

@@ -1,8 +1,4 @@
 package controllers;
-import Application.Main;
-import Application.Objects.HttpIO;
-import Application.Objects.Color;
-
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
@@ -10,6 +6,10 @@ import java.util.ResourceBundle;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
+import Application.Main;
+import Application.Objects.Color;
+import Application.Objects.HttpIO;
+import Application.Objects.ScreenChanger;
 import controllers.common.Screen;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -115,9 +115,10 @@ public class c_PortIdSelection implements Screen, Initializable {
 
                 case Z: // Blue
                     print("Blue key pressed");
+                    //changeScreen("/fxml/PortLending.fxml");
                     break;
                 case X: // Red
-                    print("Red key pressed");
+                    changeScreen("/fxml/states.fxml");
                     break;
 
                 case J: // <
@@ -138,6 +139,21 @@ public class c_PortIdSelection implements Screen, Initializable {
                     break;
             }
         });
+    }
+
+
+    @Override
+    public void changeScreen(String fxml) {
+        // fxml分岐?
+        if(fxml.equals("/fxml/states.fxml")){
+            ScreenChanger screenChanger = new ScreenChanger();
+            screenChanger.changeScreen(fxml);
+        }else{
+            
+        }
+    }
+    @Override
+    public void receiveDataFromPrevious(Object data) {
     }
 
     private void print(Object obj){

@@ -6,12 +6,18 @@ package controllers.common;
  * [ ] 前画面の状況の把握
  * [x] Key input
  * [ ] 外部への情報送受信
+ * [x] ロード時に受信
  * [ ] 並行処理
  */
 
 public interface Mutual{
 
     public void updateKeyBinding();
+
+    public void receiveDataFromPrevious(Object data);
+    default public void setRevievingData(Object data) {
+        receiveDataFromPrevious(data);
+    }
 }
 
 /* updateKeyBinding()雛形

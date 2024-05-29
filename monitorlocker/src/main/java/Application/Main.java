@@ -1,12 +1,8 @@
 package Application;
-import java.io.IOException;
 
+import Application.Objects.ScreenChanger;
 import Application.Objects.User;
-import controllers.common.Mutual;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -29,21 +25,10 @@ public class Main extends Application {
 
         resetUser();
 
-        try {
-            
-            FXMLLoader loader = new FXMLLoader(Main.class.getResource("/fxml/PortIdSelection.fxml"));
-            Parent root = loader.load();
-            Scene scene = new Scene(root, 1024, 768);
-            PRIMARYSTAGE.setScene(scene);
-            ((Mutual)loader.getController()).updateKeyBinding();
-            PRIMARYSTAGE.show();
+        ScreenChanger screenChanger = new ScreenChanger();
+        screenChanger.firstScreen("/fxml/PortIdSelection.fxml");
+        
 
-        } catch (IllegalStateException e) {
-			System.out.println("[ERROR] Main: fxml name invalid!!");
-        } catch (IOException e) {
-			System.out.println("[ERROR] Main: fxml load failed!!");
-			e.printStackTrace();
-        }
     }
 
 
