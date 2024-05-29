@@ -2,6 +2,7 @@ package Application;
 
 import Application.Objects.ScreenChanger;
 import Application.Objects.User;
+
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -26,8 +27,8 @@ public class Main extends Application {
         resetUser();
 
         ScreenChanger screenChanger = new ScreenChanger();
-        screenChanger.firstScreen("/fxml/PortIdSelection.fxml");
-        
+        screenChanger.firstScreen("/fxml/screen/PortIdSelection.fxml");
+
 
     }
 

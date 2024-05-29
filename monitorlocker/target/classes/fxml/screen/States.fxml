@@ -16,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Varanus.VaranusGUIMavenThird.statesController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.c_LendStates">
    <top>
       <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" focusTraversable="false" maxHeight="1.7976931348623157E308" minHeight="-Infinity" prefHeight="44.0" prefWidth="335.0" text="Varanus" textFill="#30a6ff" BorderPane.alignment="CENTER">
          <font>
@@ -31,7 +31,7 @@
                <children>
                   <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" pannable="true" prefHeight="768.0" prefWidth="770.0" stylesheets="@../styles/application.css" vbarPolicy="ALWAYS">
                      <content>
-                        <VBox id="resources" fx:id="resources" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" prefHeight="838.0" prefWidth="732.0" style="-fx-background-color: white;" />
+                        <VBox id="resources" fx:id="resources" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" prefHeight="838.0" prefWidth="732.0" style="-fx-background-color: white;" stylesheets="@../../styles/application.css" />
                      </content>
                   </ScrollPane>
                   <AnchorPane focusTraversable="true" minHeight="0.0" minWidth="0.0" prefHeight="768.0" prefWidth="296.0">
@@ -40,7 +40,7 @@
                            <children>
                               <ImageView fitHeight="43.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@img/buttonBlue.png" />
+                                    <Image url="@../img/buttonBlue.png" />
                                  </image>
                                  <FlowPane.margin>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -67,17 +67,17 @@
                            <children>
                               <ImageView fx:id="mode_img_list" fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
                                  <image>
-                                    <Image url="@img/list_1.png" />
+                                    <Image url="@../img/list_1.png" />
                                  </image>
                               </ImageView>
                               <ImageView fx:id="mode_img_log" fitHeight="120.0" fitWidth="120.0" layoutX="15.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
                                  <image>
-                                    <Image url="@img/log_0.png" />
+                                    <Image url="@../img/log_0.png" />
                                  </image>
                               </ImageView>
                            </children>
                         </GridPane>
-                        <GridPane fx:id="control_view" layoutX="19.2" layoutY="308.8" prefHeight="393.0" prefWidth="245.0" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="309.0">
+                        <GridPane layoutX="15.0" layoutY="362.0" prefHeight="211.0" prefWidth="245.0" AnchorPane.bottomAnchor="150.79999999999995" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.399999999999977" AnchorPane.topAnchor="362.0">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="109.199951171875" minWidth="10.0" prefWidth="95.19998779296876" />
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="161.20000457763672" minWidth="10.0" prefWidth="133.60001220703126" />
@@ -85,60 +85,39 @@
                            <rowConstraints>
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
                               <ImageView fitHeight="64.0" fitWidth="64.0" layoutX="10.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                                  <image>
-                                    <Image url="@img/buttonVertical.png" />
+                                    <Image url="@../img/buttonVertical.png" />
                                  </image>
                               </ImageView>
                               <ImageView fitHeight="64.0" fitWidth="64.0" layoutX="10.0" layoutY="264.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                  <image>
-                                    <Image url="@img/buttonHorizontal.png" />
+                                    <Image url="@../img/buttonHorizontal.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="64.0" fitWidth="64.0" layoutX="10.0" layoutY="379.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
-                                 <image>
-                                    <Image url="@img/buttonBlue.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="64.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
-                                 <image>
-                                    <Image url="@img/buttonRed.png" />
-                                 </image>
-                              </ImageView>
-                              <Text fx:id="control_b" strokeType="OUTSIDE" strokeWidth="0.0" text="持ち出す" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
-                                 <font>
-                                    <Font name="System Bold" size="32.0" />
-                                 </font>
-                                 <GridPane.margin>
-                                    <Insets />
-                                 </GridPane.margin>
-                              </Text>
-                              <Text fx:id="control_h" layoutX="92.0" layoutY="309.0" strokeType="OUTSIDE" strokeWidth="0.0" text="表示切替" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                              <Text layoutX="92.0" layoutY="309.0" strokeType="OUTSIDE" strokeWidth="0.0" text="表示切替" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                  <font>
                                     <Font name="System Bold" size="32.0" />
                                  </font>
                               </Text>
-                              <Text fx:id="control_r" layoutX="92.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="返却する" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
-                                 <font>
-                                    <Font name="System Bold" size="32.0" />
-                                 </font>
-                              </Text>
-                              <Text fx:id="control_v" layoutX="92.0" layoutY="424.0" strokeType="OUTSIDE" strokeWidth="0.0" text="スクロール" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
+                              <Text layoutX="92.0" layoutY="424.0" strokeType="OUTSIDE" strokeWidth="0.0" text="スクロール" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
                                  <font>
                                     <Font name="System Bold" size="32.0" />
                                  </font>
                               </Text>
                            </children>
                         </GridPane>
-                        <Text fx:id="logined_id" layoutX="-29.0" layoutY="694.0" strokeType="INSIDE" strokeWidth="0.0" text="ログイン済：0000000" textAlignment="RIGHT" wrappingWidth="242.93692326545715" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0">
-                           <font>
-                              <Font name="Courier New Bold" size="20.0" />
-                           </font>
-                        </Text>
+                        <AnchorPane layoutX="28.0" layoutY="631.0" maxWidth="220.0" prefHeight="61.0" prefWidth="220.0" style="-fx-background-color: #ff7373; -fx-background-radius: 10;">
+                           <children>
+                              <Text fill="WHITE" layoutX="6.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="戻る" textAlignment="CENTER" wrappingWidth="208.0">
+                                 <font>
+                                    <Font name="System Bold" size="32.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </AnchorPane>
                      </children>
                   </AnchorPane>
                </children>

@@ -43,9 +43,8 @@ public class c_PortIdSelection implements Screen, Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resourcesbundle) {
-    	print("PortIdSelection initializing...");
+    	System.out.println("PortIdSelection initializing...");
 
-        print("Getting Lending State...");
         // Get Lending State
         try{
             HttpIO get = new HttpIO("GET", "http://127.0.0.1:5000/api/portlendingstate/fetch");
@@ -56,11 +55,12 @@ public class c_PortIdSelection implements Screen, Initializable {
             for(JsonNode result : apiResponce.get("result"))
                 lendingPortsMap.put(result.get("port_id").asInt(), result.get("user_name").asText());
             lendingPortsMap.put(6, "１２３４５６７８９０１２３４５６７");
-            print(lendingPortsMap);
+            System.out.println(lendingPortsMap);
         }catch(Exception e){
             e.printStackTrace();
         }
 
+        // init cursor
         selectedPortId = 0;
         isLendMode = true;
         movePortCursor(0,0);
@@ -103,22 +103,38 @@ public class c_PortIdSelection implements Screen, Initializable {
     }
 
 
+    
     @Override
-    public void updateKeyBinding(){        
-        if( Main.PRIMARYSTAGE.getScene() == null){
-            return;
+    public void receiveDataFromPrevious(Object data) { }
+
+    @Override
+    public void changeScreen(String fxml) {
+        ScreenChanger sc = new ScreenChanger();
+        if(fxml.equals("/fxml/States.fxml")){
+        }else if(true){
+            
         }
+        sc.changeScreen(fxml);
+    }
+    @Override
+    public void popup(String fxml) {
+
+    }
+
+    @Override
+    public void updateKeyBinding(){
         Main.PRIMARYSTAGE.getScene().setOnKeyPressed(e -> {
             switch(e.getCode()){
-                // Z X, J L I K
-                // B R, < > ^ v
-
                 case Z: // Blue
-                    print("Blue key pressed");
-                    //changeScreen("/fxml/PortLending.fxml");
+                    popup("/fxml/popup/ScanAuth.fxml");
+                    if(Main.isUserAuthenticated())
+                        changeScreen("/fxml/screen/完了待機.fxml");
+                    else
+                        popup("/fxml/popup/CloseAnyKey.fxml");
+                    
                     break;
                 case X: // Red
-                    changeScreen("/fxml/states.fxml");
+                    changeScreen("/fxml/screen/states.fxml");
                     break;
 
                 case J: // <
@@ -139,24 +155,5 @@ public class c_PortIdSelection implements Screen, Initializable {
                     break;
             }
         });
-    }
-
-
-    @Override
-    public void changeScreen(String fxml) {
-        // fxml分岐?
-        if(fxml.equals("/fxml/states.fxml")){
-            ScreenChanger screenChanger = new ScreenChanger();
-            screenChanger.changeScreen(fxml);
-        }else{
-            
-        }
-    }
-    @Override
-    public void receiveDataFromPrevious(Object data) {
-    }
-
-    private void print(Object obj){
-        System.out.println("c_PortIdSelection : " + obj);
     }
 }

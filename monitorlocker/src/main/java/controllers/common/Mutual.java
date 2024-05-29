@@ -21,34 +21,30 @@ public interface Mutual{
 }
 
 /* updateKeyBinding()雛形
-    public void updateKeyBinding(){        
-        if( Main.PRIMARYSTAGE.getScene() == null){
-            return;
-        }
+    public void updateKeyBinding(){
         Main.PRIMARYSTAGE.getScene().setOnKeyPressed(e -> {
             switch(e.getCode()){
                 // Z X, J L I K
                 // B R, < > ^ v
-
                 case Z: // Blue
-                    print("Blue key pressed");
+                    System.out.println("Blue key pressed");
                     break;
                 case X: // Red
-                    print("Red key pressed");
+                    System.out.println("Red key pressed");
                     break;
 
                 case J: // <
-                    print("< key pressed");
+                    System.out.println("< key pressed");
                     break;
                 case L: // >
-                    print("> key pressed");
+                    System.out.println("> key pressed");
                     break;
 
                 case I: // ^
-                    print("^ key pressed");
+                    System.out.println("^ key pressed");
                     break;
                 case K: // v
-                    print("v  key pressed");
+                    System.out.println("v  key pressed");
                     break;
 
                 default:
