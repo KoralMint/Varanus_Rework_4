@@ -34,9 +34,9 @@ public class Main extends Application {
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("/fxml/PortIdSelection.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root, 1024, 768);
-            primaryStage.setScene(scene);
+            PRIMARYSTAGE.setScene(scene);
             ((Mutual)loader.getController()).updateKeyBinding();
-            primaryStage.show();
+            PRIMARYSTAGE.show();
 
         } catch (IllegalStateException e) {
 			System.out.println("[ERROR] Main: fxml name invalid!!");

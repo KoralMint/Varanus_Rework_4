@@ -7,6 +7,10 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 public class HttpIO {
 
     private String method;
@@ -33,7 +37,7 @@ public class HttpIO {
     }
 
 
-    public String post() throws NullPointerException, Exception{
+    public JsonNode post() throws NullPointerException, Exception{
         
         if(method != "POST"){
             throw new Exception("Method is not POST");
@@ -75,11 +79,11 @@ public class HttpIO {
         br.close();
 
         //結果は呼び出し元に返しておく
-        return sb.toString();
+        return jsonify( sb.toString() );
     }
 
 
-    public String get() throws NullPointerException, Exception{
+    public JsonNode get() throws NullPointerException, Exception{
         
         if(method != "GET"){
             throw new Exception("Method is not GET");
@@ -115,7 +119,11 @@ public class HttpIO {
         br.close();
 
         //結果は呼び出し元に返しておく
-        return sb.toString();
+        return jsonify( sb.toString() );
     }
 
+    private JsonNode jsonify (String str) throws JsonProcessingException{
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readTree(str);
+    }
 }
