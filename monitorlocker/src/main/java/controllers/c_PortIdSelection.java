@@ -79,10 +79,12 @@ public class c_PortIdSelection implements Screen, Initializable {
         // set cursor position
         selectedPortId = x + y * (boundX+1);
 
-        // apply
+        // apply mode
         txt_portId.setText(String.valueOf(selectedPortId + 1));
-        setMode(!lendingPortsMap.containsKey(selectedPortId));
+        isLendMode = !lendingPortsMap.containsKey(selectedPortId);
+        btntxt_nextStepInteraction.setText(isLendMode? "持出" : "返却");
         
+        // apply port state
         if(isLendMode)
             txt_portLendingState.setText("持ち出し可能");
         else
@@ -91,18 +93,13 @@ public class c_PortIdSelection implements Screen, Initializable {
                 lendingPortsMap.get(selectedPortId),
                 lendingPortsMap.get(selectedPortId).length() > 13 ? "…" : "") );
 
+        
         Pane[] portPanes = {bl_port1, bl_port2, bl_port3, bl_port4, bl_port5, bl_port6, bl_port7, bl_port8};
         for(int i=0; i<portPanes.length; i++){
             Pane portPane = portPanes[i];
             portPane.setStyle("-fx-background-color: " + (lendingPortsMap.containsKey(i) ? Color.red : Color.blue));
             portPane.setOpacity(i==selectedPortId? 1.0 : 0.2);
         }
-    }
-
-
-    private void setMode(boolean _isLendMode){
-        isLendMode = _isLendMode;
-        btntxt_nextStepInteraction.setText(isLendMode? "持出" : "返却");
     }
 
 
