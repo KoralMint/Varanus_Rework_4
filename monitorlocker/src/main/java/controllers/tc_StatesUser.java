@@ -81,7 +81,7 @@ public class tc_StatesUser implements Initializable{
     //date time
     public static String convertDateTimeFormat(String inputDateTime) {
         // 入力フォーマット
-        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         // 出力フォーマット
         SimpleDateFormat outputFormat = new SimpleDateFormat("MM/dd HH:mm");

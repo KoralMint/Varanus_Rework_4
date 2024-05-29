@@ -76,21 +76,19 @@ public class c_LendStates implements Initializable, Screen{
 				
 			//TODO API: 貸出状況jsonを取得
 			try {
-				ObjectMapper mapper = new ObjectMapper();
+				HttpIO get = new HttpIO("GET", "http://127.0.0.1:5000/api/portlendingstate/fetch");
+            	JsonNode apiResponce = get.get();
+				System.out.println(apiResponce.toString());
 				
-				Path jsonPath = findFile("lendusers.json");
-				JsonNode node = mapper.readTree(jsonPath.toFile());
-				
-				
-				for ( JsonNode n : node.get("member")) {
-					FXMLLoader user_loader = new FXMLLoader(getClass().getResource("/fxml/States_resource_user.fxml"));
+				for ( JsonNode n : apiResponce.get("result")) {
+					FXMLLoader user_loader = new FXMLLoader(getClass().getResource("/fxml/screen/States_resource_user.fxml"));
 					AnchorPane pane = (AnchorPane) user_loader.load();
 					
 					resource.getChildren().add(pane);
 					VBox.setMargin(pane, new Insets(0.0, 0.0, 5.0, 0.0));
 					
 					tc_StatesUser userctrl = user_loader.getController();
-					userctrl.setUserdata(n.get("user_id").asInt(), n.get("user_name").asText(), n.get("datetime").asText());
+					userctrl.setUserdata(n.get("user_id").asInt(), n.get("user_name").asText(), n.get("time").asText());
 				}
 			}catch (FileNotFoundException exception) {
 				System.out.println("[ERROR] no json!\n--> "+exception.toString());
