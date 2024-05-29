@@ -74,7 +74,8 @@ public class c_LendStates implements Initializable, Screen{
 				
 			////user element
 				
-			//TODO API: 貸出状況jsonを取得
+			
+			// TODO: WARINGを消す！javafxのバージョンが変らしい
 			try {
 				HttpIO get = new HttpIO("GET", "http://127.0.0.1:5000/api/portlendingstate/fetch");
             	JsonNode apiResponce = get.get();
@@ -96,7 +97,7 @@ public class c_LendStates implements Initializable, Screen{
 				System.out.println("[ERROR] while lending status setting");
 				exception.printStackTrace();
 			}
-		
+			
 			
 			//AddResource end
 		} catch (IOException e) {
