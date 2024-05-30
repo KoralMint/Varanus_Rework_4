@@ -9,14 +9,8 @@
             "name": "Main",
             "request": "launch",
             "mainClass": "Application.Main",
-            "projectName": "monitorlocker"
-        },
-        {
-            "type": "java",
-            "name": "Launcher",
-            "request": "launch",
-            "mainClass": "Application.Launcher",
-            "projectName": "monitorlocker"
+            "projectName": "monitorlocker",
+            "vmArgs": "--module-path C:/Program Files/Java/jdk-20/javafx-sdk-21.0.3/lib --add-modules javafx.controls,javafx.fxml"
         }
     ]
 }

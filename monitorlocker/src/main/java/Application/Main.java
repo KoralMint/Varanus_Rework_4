@@ -22,6 +22,12 @@ public class Main extends Application {
 		// カレントワーキングディレクトリを取得
         String currentDirectory = System.getProperty("user.dir");
 		System.out.println("カレントワーキングディレクトリ: " + currentDirectory);
+        //java, javafxのバージョンを取得
+        System.out.println("Java Version: " + System.getProperty("java.version"));
+        System.out.println("JavaFX Version: " + System.getProperty("javafx.version"));
+        //java, javafxランタイムのバージョンを取得
+        System.out.println("Java Runtime Version: " + System.getProperty("java.runtime.version"));
+        System.out.println("JavaFX Runtime Version: " + System.getProperty("javafx.runtime.version"));
 
 
         resetUser();
