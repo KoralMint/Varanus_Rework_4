@@ -50,6 +50,11 @@ public class c_PortIdSelection implements Screen, Initializable {
             HttpIO get = new HttpIO("GET", "http://127.0.0.1:5000/api/portlendingstate/fetch");
             JsonNode apiResponce = get.get();
             
+            if(apiResponce == null || apiResponce.get("result") == null) {
+                System.out.println("Error: apiResponce is null");
+                return;
+            }
+
             // organize apiResponce - { port_id: user_name, ... }
             lendingPortsMap = new HashMap<>();
             for(JsonNode result : apiResponce.get("result"))

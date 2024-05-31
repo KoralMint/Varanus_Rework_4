@@ -29,7 +29,7 @@
          <children>
             <HBox prefHeight="724.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" pannable="true" prefHeight="768.0" prefWidth="770.0" stylesheets="@../styles/application.css" vbarPolicy="ALWAYS">
+                  <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" pannable="true" prefHeight="768.0" prefWidth="770.0" stylesheets="@../../styles/application.css" vbarPolicy="ALWAYS">
                      <content>
                         <VBox id="resources" fx:id="resources" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" prefHeight="838.0" prefWidth="732.0" style="-fx-background-color: white;" stylesheets="@../../styles/application.css" />
                      </content>

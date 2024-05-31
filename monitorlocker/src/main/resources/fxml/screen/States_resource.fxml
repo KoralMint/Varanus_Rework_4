@@ -26,7 +26,7 @@
             <Insets bottom="20.0" top="30.0" />
          </VBox.margin>
       </StackPane>
-      <AnchorPane id="element" fx:id="remain_bar" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="88.0" prefWidth="636.0" stylesheets="@../styles/application.css">
+      <AnchorPane id="element" fx:id="remain_bar" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="88.0" prefWidth="636.0" stylesheets="@../../styles/application.css">
          <VBox.margin>
             <Insets bottom="30.0" />
          </VBox.margin>
@@ -86,7 +86,7 @@
             </ImageView>
             <ImageView fitHeight="7.0" fitWidth="7.0" layoutX="683.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" rotate="180.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.rightAnchor="-1.0">
                <image>
-                  <Image url="@img/gauge_edge0.png" />
+                  <Image url="@../img/gauge_edge0.png" />
                </image>
             </ImageView>
          </children>
