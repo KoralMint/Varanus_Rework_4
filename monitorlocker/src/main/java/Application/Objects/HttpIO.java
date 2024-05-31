@@ -32,13 +32,17 @@ public class HttpIO {
     public HttpIO(String method, String url, String body){
         this(method, url, body, true, true);
     }
-    public HttpIO(String method, String url){
-        this(method, url, "", true, false);
+    public HttpIO(String url, String body){
+        this("", url, body, true, false);
+    }
+    public HttpIO(String url){
+        this("", url, "", true, false);
     }
 
 
     public JsonNode post() throws NullPointerException, Exception{
         
+        if(method == "") method = "POST";
         if(method != "POST"){
             throw new Exception("Method is not POST");
         }
@@ -81,10 +85,10 @@ public class HttpIO {
         //結果は呼び出し元に返しておく
         return jsonify( sb.toString() );
     }
-
+    
 
     public JsonNode get() throws NullPointerException, Exception{
-        
+        if(method == "") method = "GET";
         if(method != "GET"){
             throw new Exception("Method is not GET");
         }

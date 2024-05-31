@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox id="resource" fx:id="resource_element" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" prefHeight="728.0" prefWidth="687.0" stylesheets="@../../styles/application.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<VBox id="resource" fx:id="resource_element" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" prefHeight="728.0" prefWidth="687.0" stylesheets="@../../styles/application.css" xmlns="http://javafx.com/javafx/8.0.411" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <StackPane id="remain_bar" prefHeight="5.0" prefWidth="634.0">
          <children>

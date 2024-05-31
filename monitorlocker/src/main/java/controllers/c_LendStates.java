@@ -75,12 +75,10 @@ public class c_LendStates implements Initializable, Screen{
 			////user element
 				
 			
-			// TODO: WARINGを消す！javafxのバージョンが変らしい
 			try {
-				HttpIO get = new HttpIO("GET", "http://127.0.0.1:5000/api/portlendingstate/fetch");
+				HttpIO get = new HttpIO("http://127.0.0.1:5000/api/portlendingstate/fetch");
             	JsonNode apiResponce = get.get();
 				System.out.println(apiResponce.toString());
-				
 				for ( JsonNode n : apiResponce.get("result")) {
 					FXMLLoader user_loader = new FXMLLoader(getClass().getResource("/fxml/screen/States_resource_user.fxml"));
 					AnchorPane pane = (AnchorPane) user_loader.load();
