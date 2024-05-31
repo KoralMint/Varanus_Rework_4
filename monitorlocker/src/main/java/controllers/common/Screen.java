@@ -15,5 +15,5 @@ package controllers.common;
 
 public interface Screen extends Mutual{
     public void changeScreen(String fxml);
-    //TODO popup
+    public void popup(String fxml);
 }

@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox id="resource" fx:id="resource_element" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" prefHeight="728.0" prefWidth="687.0" stylesheets="@../styles/application.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<VBox id="resource" fx:id="resource_element" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" prefHeight="728.0" prefWidth="687.0" stylesheets="@../../styles/application.css" xmlns="http://javafx.com/javafx/8.0.411" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <StackPane id="remain_bar" prefHeight="5.0" prefWidth="634.0">
          <children>
@@ -26,17 +26,17 @@
             <Insets bottom="20.0" top="30.0" />
          </VBox.margin>
       </StackPane>
-      <AnchorPane id="element" fx:id="remain_bar" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="88.0" prefWidth="636.0" stylesheets="@../styles/application.css">
+      <AnchorPane id="element" fx:id="remain_bar" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="88.0" prefWidth="636.0" stylesheets="@../../styles/application.css">
          <VBox.margin>
             <Insets bottom="30.0" />
          </VBox.margin>
          <children>
             <HBox prefHeight="88.0" prefWidth="682.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Pane id="remain_body" fx:id="remain_body" maxWidth="650.0" minWidth="0.0" prefHeight="88.0" prefWidth="650.0" style="-fx-background-color: #75c4ff;" />
+                  <Pane id="remain_body" fx:id="remain_body" maxWidth="650.0" minWidth="0.0" prefHeight="88.0" prefWidth="650.0" style="-fx-background-color: #75c4ff;" stylesheets="@../../styles/application.css" />
                   <ImageView id="remain_terminal" fx:id="remain_terminal" fitHeight="88.0" fitWidth="42.0" pickOnBounds="true" HBox.hgrow="NEVER">
                      <image>
-                        <Image url="@img/gauge_edge1.png" />
+                        <Image url="@../img/gauge_edge1.png" />
                      </image>
                   </ImageView>
                </children>
@@ -71,22 +71,22 @@
             </FlowPane>
             <ImageView fitHeight="7.0" fitWidth="7.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                <image>
-                  <Image url="@img/gauge_edge0.png" />
+                  <Image url="@../img/gauge_edge0.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="7.0" fitWidth="7.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
                <image>
-                  <Image url="@img/gauge_edge0.png" />
+                  <Image url="@../img/gauge_edge0.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="7.0" fitWidth="7.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0">
                <image>
-                  <Image url="@img/gauge_edge0.png" />
+                  <Image url="@../img/gauge_edge0.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="7.0" fitWidth="7.0" layoutX="683.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" rotate="180.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.rightAnchor="-1.0">
                <image>
-                  <Image url="@img/gauge_edge0.png" />
+                  <Image url="@../img/gauge_edge0.png" />
                </image>
             </ImageView>
          </children>
