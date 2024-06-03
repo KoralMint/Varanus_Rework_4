@@ -33,10 +33,10 @@ public class HttpIO {
         this(method, url, body, true, true);
     }
     public HttpIO(String url, String body){
-        this("", url, body, true, false);
+        this("", url, body, true, true);
     }
     public HttpIO(String url){
-        this("", url, "", true, false);
+        this("", url, "", true, true);
     }
 
 

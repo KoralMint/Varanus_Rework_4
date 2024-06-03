@@ -8,14 +8,9 @@ import controllers.common.Screen;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 //import java.lang.reflect.Field;
@@ -33,14 +28,6 @@ import javafx.scene.text.Text;
 
 public class c_LendStates implements Initializable, Screen{
 
-	@FXML private Text control_b;
-    @FXML private Text control_h;
-    @FXML private Text control_r;
-    @FXML private Text control_v;
-    @FXML private Text logined_id;
-    @FXML private ImageView mode_img_list;
-    @FXML private ImageView mode_img_log;
-    @FXML private Text mode_txt;
     @FXML private VBox resources;
     @FXML private AnchorPane remain_bar;
     @FXML private Pane remain_body;
@@ -52,8 +39,6 @@ public class c_LendStates implements Initializable, Screen{
 
     @Override
     public void initialize(URL location, ResourceBundle resourcesbundle){
-    	
-    	//Main.currentScene.onKeyPressedProperty();
     	
 		try {
 			////resource
@@ -78,7 +63,7 @@ public class c_LendStates implements Initializable, Screen{
 			try {
 				HttpIO get = new HttpIO("http://127.0.0.1:5000/api/portlendingstate/fetch");
             	JsonNode apiResponce = get.get();
-				System.out.println(apiResponce.toString());
+				// System.out.println(apiResponce.toString());
 				for ( JsonNode n : apiResponce.get("result")) {
 					FXMLLoader user_loader = new FXMLLoader(getClass().getResource("/fxml/screen/States_resource_user.fxml"));
 					AnchorPane pane = (AnchorPane) user_loader.load();
@@ -104,26 +89,6 @@ public class c_LendStates implements Initializable, Screen{
 		//deployment initializing end
     }
 	
-    
-	public static Path findFile(String fileName) {
-        try {
-            // カレントワーキングディレクトリを取得
-            Path currentDirectory = Paths.get(System.getProperty("user.dir"));
-
-            // ワーキングディレクトリ内を再帰的に検索し、目的のファイル名を持つファイルを見つける
-            Optional<Path> filePath = Files.walk(currentDirectory)
-                    .filter(path -> path.getFileName().toString().equals(fileName))
-                    .findFirst();
-
-            // 目的のファイルが見つかった場合、そのパスを返す
-            if (filePath.isPresent()) {
-                return filePath.get();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null; // ファイルが見つからなかった場合は null を返す
-    }
 	
     @Override
     public void receiveDataFromPrevious(Object data) { }

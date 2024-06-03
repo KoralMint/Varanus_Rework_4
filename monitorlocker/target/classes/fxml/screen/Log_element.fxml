@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="element" fx:id="log_element" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="60.0" prefWidth="703.0" stylesheets="@../styles/application.css" xmlns="http://javafx.com/javafx/8.0.411" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="element" fx:id="log_element" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="60.0" prefWidth="703.0" stylesheets="@../../styles/application.css" xmlns="http://javafx.com/javafx/8.0.411" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <GridPane AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="10.0">
          <columnConstraints>
@@ -24,29 +24,29 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Text fx:id="datetime" strokeType="OUTSIDE" strokeWidth="0.0" text="00/00 00:00" wrappingWidth="206.0146484375">
+            <Text id="datetime" fx:id="datetime" strokeType="OUTSIDE" strokeWidth="0.0" text="00/00 00:00" wrappingWidth="206.0146484375">
                <font>
                   <Font name="Courier New Bold" size="30.0" />
                </font>
             </Text>
-            <Pane id="devider" prefHeight="50.0" prefWidth="0.0" stylesheets="@../styles/application.css" GridPane.columnIndex="1" />
-            <Text fx:id="user_id" layoutX="401.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0000000" translateX="10.0" wrappingWidth="137.25231099128723" GridPane.columnIndex="2">
+            <Pane id="devider" prefHeight="50.0" prefWidth="0.0" stylesheets="@../../styles/application.css" GridPane.columnIndex="1" />
+            <Text id="user_id" fx:id="user_id" layoutX="401.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0000000" translateX="10.0" wrappingWidth="137.25231099128723" GridPane.columnIndex="2">
                <font>
                   <Font name="Courier New Bold" size="30.0" />
                </font>
             </Text>
-            <Text fx:id="user_name" layoutX="10.0" layoutY="58.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="username" translateY="1.0" wrappingWidth="163.3680419921875" GridPane.columnIndex="3">
+            <Text id="user_name" fx:id="user_name" layoutX="10.0" layoutY="58.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="username" translateY="1.0" wrappingWidth="163.3680419921875" GridPane.columnIndex="3">
                <font>
                   <Font name="Courier New Bold" size="28.0" />
                </font>
             </Text>
-            <Pane id="devider" layoutX="216.0" layoutY="10.0" prefHeight="50.0" prefWidth="0.0" stylesheets="@../styles/application.css" GridPane.columnIndex="4" />
-            <Text fx:id="port_id" layoutX="10.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="000" textAlignment="CENTER" translateX="-2.0" wrappingWidth="54.85243821144104" GridPane.columnIndex="5">
+            <Pane id="devider" layoutX="216.0" layoutY="10.0" prefHeight="50.0" prefWidth="0.0" stylesheets="@../../styles/application.css" GridPane.columnIndex="4" />
+            <Text id="port_id" fx:id="port_id" layoutX="10.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="000" textAlignment="CENTER" translateX="-2.0" wrappingWidth="54.85243821144104" GridPane.columnIndex="5">
                <font>
                   <Font name="Courier New Bold" size="30.0" />
                </font>
             </Text>
-            <Text fx:id="is_lent" layoutX="373.0" layoutY="51.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="stat" textAlignment="CENTER" translateY="1.0" wrappingWidth="107.36803016662452" GridPane.columnIndex="6">
+            <Text id="is_lent" fx:id="is_lent" layoutX="373.0" layoutY="51.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="stat" textAlignment="CENTER" translateY="1.0" wrappingWidth="107.36803016662452" GridPane.columnIndex="6">
                <font>
                   <Font name="Courier New Bold" size="28.0" />
                </font>
