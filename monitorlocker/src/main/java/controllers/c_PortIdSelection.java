@@ -36,9 +36,12 @@ public class c_PortIdSelection implements Screen, Initializable {
 
 
 
-    private int selectedPortId = 0;
+    private static int selectedPortId;
     private boolean isLendMode = true;
     Map<Integer, String> lendingPortsMap;
+    public int getSelectedPortId(){ return selectedPortId; }
+    public boolean getIsLendMode(){ return isLendMode; }
+
     //---------------------------------------------------------------------//
 
     @Override
@@ -66,8 +69,8 @@ public class c_PortIdSelection implements Screen, Initializable {
         }
 
         // init cursor
-        selectedPortId = 0;
-        isLendMode = true;
+        selectedPortId = (selectedPortId>0 ? selectedPortId : 0);
+        isLendMode = !lendingPortsMap.containsKey(selectedPortId);
         movePortCursor(0,0);
     }
 
