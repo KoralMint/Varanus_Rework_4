@@ -136,13 +136,13 @@ public class c_PortIdSelection implements Screen, Initializable {
                 case Z: // Blue
                     popup("/fxml/popup/ScanAuth.fxml");
                     if(Main.isUserAuthenticated())
-                        changeScreen("/fxml/screen/完了待機.fxml");
+                        changeScreen("/fxml/screen/WaitMonitorMove.fxml");
                     else
                         popup("/fxml/popup/CloseAnyKey.fxml");
                     
                     break;
                 case X: // Red
-                    changeScreen("/fxml/screen/states.fxml");
+                    changeScreen("/fxml/screen/States.fxml");
                     break;
 
                 case J: // <

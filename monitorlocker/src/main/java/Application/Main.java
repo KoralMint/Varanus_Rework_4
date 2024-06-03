@@ -56,3 +56,4 @@ public class Main extends Application {
     public static User getUser() { return user; } // getter
     public static boolean isUserAuthenticated() { return isUserAuthenticated; } // getter
 }
+// shellscriptを動かせれば鍵操作できる
