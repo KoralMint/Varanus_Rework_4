@@ -33,8 +33,7 @@ public class ScreenChanger {
     
             ((controllers.common.Mutual)loader.getController()).updateKeyBinding();
     }
-
-    // TODO not tested
+    
     public void changeScreen(String fxml) {
         try {
             loader = new FXMLLoader(Main.class.getResource(fxml));
