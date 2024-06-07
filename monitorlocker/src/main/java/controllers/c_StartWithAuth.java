@@ -11,7 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
-public class c_StartAuth implements Screen, Initializable {
+public class c_StartWithAuth implements Screen, Initializable {
 
     @FXML private AnchorPane bg_step1;
     @FXML private AnchorPane bg_step2;
