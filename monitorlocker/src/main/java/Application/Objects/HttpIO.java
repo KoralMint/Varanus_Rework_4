@@ -85,7 +85,10 @@ public class HttpIO {
         //結果は呼び出し元に返しておく
         return jsonify( sb.toString() );
     }
-    
+    public JsonNode post(String body) throws NullPointerException, Exception{
+        this.body = body;
+        return post();
+    }
 
     public JsonNode get() throws NullPointerException, Exception{
         if(method == "") method = "GET";

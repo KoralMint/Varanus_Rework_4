@@ -1,11 +1,14 @@
 package controllers;
 
+import controllers.common.Screen;
+import Application.Main;
+import Application.Objects.*;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import Application.Main;
-import Application.Objects.ScreenChanger;
-import controllers.common.Screen;
+import com.fasterxml.jackson.databind.JsonNode;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
@@ -17,9 +20,61 @@ public class c_StartWithAuth implements Screen, Initializable {
     @FXML private AnchorPane bg_step2;
     @FXML private Text text_description;
 
+    private int status = 0; // 0: 操作待ち, 1: 認証待ち, 2: 認証成功, 3: 認証失敗
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("StartAuth initializing...");
+        status = 0;
+    }
+
+    private void auth() {
+        NfcController nfc = new NfcController();
+        // 認証中
+        status = 1;
+        boolean _success = nfc.readNfc();
+        if(_success && nfc.hasTagId()) {
+            // 読取成功
+            System.out.print("読取成功 - ");
+            
+            try{
+                HttpIO getUser = new HttpIO("http://127.0.0.1:5000/api/userdata/fetch");
+                String userdataReq = "[\"user_name\", \"user_id\", \"user_authority\", \"email\", \"discord_id\"]";
+                JsonNode apiResponce = getUser.post( String.format("{\"tagid\": \"%s\", \"request\":%s}", nfc.getTagId(), userdataReq) );
+                if (apiResponce.get("stats").asText()=="ok"){
+                    // 認証成功
+
+                    User _user = new User(
+                        nfc.getTagId(),
+                        apiResponce.get("user_name").asText(),
+                        apiResponce.get("user_id").asText(),
+                        apiResponce.get("user_authority").asInt(),
+                        apiResponce.get("email").asText(),
+                        apiResponce.get("discord_id").asText()
+                    );
+                    Main.setUser(_user);
+
+                    status = 2;
+                    changeScreen("/fxml/PortIdSelection.fxml");
+                }else{
+                    // 認証失敗
+                    status = 3;
+                    System.out.println("認証失敗");
+                    popup("/fxml/AuthenticationFailed.fxml");
+                    status = 0;
+                }
+
+            } catch (Exception e) {
+                System.out.println("認証エラー");
+                e.printStackTrace();
+            }
+        } else {
+            // 読取失敗
+            status = 3;
+            System.out.println("読取失敗");
+            popup("/fxml/AuthenticationFailed.fxml");
+            status = 0;
+        }
     }
 
     @Override
@@ -48,6 +103,8 @@ public class c_StartWithAuth implements Screen, Initializable {
                 case L: // >
                 case I: // ^
                 case K: // v
+                    if(status == 0)
+                        auth();
                     break;
 
                 default:

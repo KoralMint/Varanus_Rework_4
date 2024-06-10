@@ -35,7 +35,7 @@ public class Main extends Application {
         resetUser();
 
         ScreenChanger screenChanger = new ScreenChanger();
-        screenChanger.firstScreen("/fxml/screen/PortIdSelection.fxml");
+        screenChanger.firstScreen("/fxml/screen/StartWithAuthentication.fxml");
 
 
     }
@@ -52,7 +52,10 @@ public class Main extends Application {
         user = new User();
         isUserAuthenticated = false;
     }
-    // TODO setter: setUser
+    public static void setUser(User _user) {
+        user = _user;
+        isUserAuthenticated = true;
+    }
     public static User getUser() { return user; } // getter
     public static boolean isUserAuthenticated() { return isUserAuthenticated; } // getter
 }
