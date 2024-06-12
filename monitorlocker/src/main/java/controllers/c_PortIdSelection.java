@@ -30,12 +30,13 @@ public class c_PortIdSelection implements Screen, Initializable {
     @FXML private Pane bl_port8;
 
     @FXML private AnchorPane mainPane;
+    @FXML private AnchorPane pane_nextStep;
     @FXML private Text txt_portId;
     @FXML private Text txt_portLendingState;
     @FXML private Text btntxt_nextStepInteraction;
 
 
-
+    private static boolean firstTime = true;
     private static int selectedPortId;
     private boolean isLendMode = true;
     Map<Integer, String> lendingPortsMap;
@@ -62,7 +63,7 @@ public class c_PortIdSelection implements Screen, Initializable {
             lendingPortsMap = new HashMap<>();
             for(JsonNode result : apiResponce.get("result"))
                 lendingPortsMap.put(result.get("port_id").asInt(), result.get("user_name").asText());
-            lendingPortsMap.put(6, "１２３４５６７８９０１２３４５６７");
+            lendingPortsMap.put(6, "koral");
             System.out.println(lendingPortsMap);
         }catch(Exception e){
             e.printStackTrace();
@@ -70,6 +71,30 @@ public class c_PortIdSelection implements Screen, Initializable {
 
         // init cursor
         selectedPortId = (selectedPortId>0 ? selectedPortId : 0);
+        // first time
+        if(firstTime) {
+            firstTime = false;
+            if (Main.isUserAuthenticated()){
+                String _userName = Main.getUser().getUserName();
+                if(lendingPortsMap.containsValue(_userName)){
+                    // select first port that matches the user
+                    for (Map.Entry<Integer, String> entry : lendingPortsMap.entrySet()) {
+                        if(entry.getValue().equals(_userName)){
+                            selectedPortId = entry.getKey();
+                            break;
+                        }
+                    }
+                }else{
+                    // select first port that is not lending
+                    for (int i = 0; i < 8; i++) {
+                        if(!lendingPortsMap.containsKey(i)){
+                            selectedPortId = i;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
         isLendMode = !lendingPortsMap.containsKey(selectedPortId);
         movePortCursor(0,0);
     }

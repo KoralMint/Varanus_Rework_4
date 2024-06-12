@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.411" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.c_PortIdSelection">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.c_PortIdSelection">
    <top>
       <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" focusTraversable="false" maxHeight="1.7976931348623157E308" minHeight="-Infinity" prefHeight="44.0" prefWidth="335.0" text="Varanus" textFill="#30a6ff" BorderPane.alignment="CENTER">
          <font>
@@ -92,7 +92,7 @@
                               <Insets bottom="15.0" right="15.0" top="15.0" />
                            </HBox.margin>
                            <children>
-                              <AnchorPane maxWidth="220.0" prefHeight="181.0" prefWidth="220.0" style="-fx-background-color: #30a6ff; -fx-background-radius: 10;">
+                              <AnchorPane fx:id="pane_nextStep" maxWidth="220.0" prefHeight="181.0" prefWidth="220.0" style="-fx-background-color: #30a6ff; -fx-background-radius: 10;">
                                  <children>
                                     <Text fx:id="btntxt_nextStepInteraction" fill="WHITE" layoutX="6.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Next" textAlignment="CENTER" wrappingWidth="208.0">
                                        <font>

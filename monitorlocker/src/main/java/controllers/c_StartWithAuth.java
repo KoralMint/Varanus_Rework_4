@@ -82,6 +82,7 @@ public class c_StartWithAuth implements Screen, Initializable {
         }else{
             // 認証失敗
             popup("/fxml/popup/AuthenticationFailed.fxml");
+            changeScreen("/fxml/screen/PortIdSelection.fxml");
         }
         status = 0;
     }
