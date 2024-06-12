@@ -113,20 +113,7 @@ public class c_StartWithAuth implements Screen, Initializable {
                 case I: // ^
                 case K: // v
                     if(this.status == 0)
-                        System.out.println("start Authentication..");
                         auth();
-                    break;
-
-                case R: //debug
-                    try{
-                        HttpIO _add = new HttpIO("http://127.0.0.1:5000/api/userdata/add");
-                        // ['tag_id', 'user_name', 'user_id', 'user_authority', 'email', 'discord_id']
-                        String _addReq = "{ \"tag_id\": \"012e58a65ad82549\", \"user_name\": \"koral\", \"user_id\": \"1230443\", \"user_authority\": 1, \"email\": \"user3@example.com\", \"discord_id\": \"discord3\"}";
-                        JsonNode _responce = _add.post(_addReq);
-                        System.out.println(_responce.toString());
-                    } catch (Exception _e) {
-                        _e.printStackTrace();
-                    }
                     break;
 
                 default:

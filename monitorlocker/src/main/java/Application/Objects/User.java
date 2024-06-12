@@ -18,6 +18,7 @@ public class User {
 
     // userdataFetchLevel: 0:empty | 1:tag_id+user_id+user_name | 2:full
     private short userdataFetchLevel = 0;
+    public short getUserdataFetchLevel() { return userdataFetchLevel; }
 
 
     public User(String tag_id, String user_name, String user_id, int user_authority, String email, String discord_id) {
