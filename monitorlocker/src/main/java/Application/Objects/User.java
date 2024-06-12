@@ -8,7 +8,13 @@ public class User {
                     user_id,
                     email,
                     discord_id;
-    private int user_authority;
+    private short user_authority;
+
+    public String getUserName() { return user_name; }
+    public String getUserId() { return user_id; }
+    public short getUserAuthority() { return user_authority; }
+    public String getEmail() { return email; }
+    public String getDiscordId() { return discord_id; }
 
     // userdataFetchLevel: 0:empty | 1:tag_id+user_id+user_name | 2:full
     private short userdataFetchLevel = 0;
@@ -19,7 +25,7 @@ public class User {
         this.tag_id = tag_id;
         this.user_name = user_name;
         this.user_id = user_id;
-        this.user_authority = user_authority;
+        this.user_authority = (short)user_authority;
         this.email = email;
         this.discord_id = discord_id;
 
@@ -45,4 +51,5 @@ public class User {
         }
     }
 
+    
 }

@@ -40,9 +40,11 @@ public class c_StartWithAuth implements Screen, Initializable {
             try{
                 HttpIO getUser = new HttpIO("http://127.0.0.1:5000/api/userdata/fetch");
                 String userdataReq = "[\"user_name\", \"user_id\", \"user_authority\", \"email\", \"discord_id\"]";
-                JsonNode apiResponce = getUser.post( String.format("{\"tagid\": \"%s\", \"request\":%s}", nfc.getTagId(), userdataReq) );
-                if (apiResponce.get("stats").asText()=="ok"){
+                JsonNode apiResponce = getUser.post( String.format("{\"tag_id\": \"%s\", \"request\":%s}", nfc.getTagId(), userdataReq) );
+                if (apiResponce.get("stats").asText().equals("ok")){
                     // 認証成功
+                    status = 2;
+                    System.out.print("認証成功 - ");
 
                     User _user = new User(
                         nfc.getTagId(),
@@ -53,18 +55,17 @@ public class c_StartWithAuth implements Screen, Initializable {
                         apiResponce.get("discord_id").asText()
                     );
                     Main.setUser(_user);
-
-                    status = 2;
-                    changeScreen("/fxml/PortIdSelection.fxml");
+                    System.out.printf( "Welcome %s ( %s )\n", _user.getUserName(), _user.getUserId() );
                 }else{
                     // 認証失敗
                     status = 3;
                     System.out.println("認証失敗");
+                    System.out.println(apiResponce.get("stats").asText());
                     popup("/fxml/AuthenticationFailed.fxml");
-                    status = 0;
                 }
 
             } catch (Exception e) {
+                status = 3;
                 System.out.println("認証エラー");
                 e.printStackTrace();
             }
@@ -73,8 +74,16 @@ public class c_StartWithAuth implements Screen, Initializable {
             status = 3;
             System.out.println("読取失敗");
             popup("/fxml/AuthenticationFailed.fxml");
-            status = 0;
         }
+
+        // 認証終了
+        if (status == 2) {
+            changeScreen("/fxml/screen/PortIdSelection.fxml");
+        }else{
+            // 認証失敗
+            popup("/fxml/popup/AuthenticationFailed.fxml");
+        }
+        status = 0;
     }
 
     @Override
@@ -103,8 +112,21 @@ public class c_StartWithAuth implements Screen, Initializable {
                 case L: // >
                 case I: // ^
                 case K: // v
-                    if(status == 0)
+                    if(this.status == 0)
+                        System.out.println("start Authentication..");
                         auth();
+                    break;
+
+                case R: //debug
+                    try{
+                        HttpIO _add = new HttpIO("http://127.0.0.1:5000/api/userdata/add");
+                        // ['tag_id', 'user_name', 'user_id', 'user_authority', 'email', 'discord_id']
+                        String _addReq = "{ \"tag_id\": \"012e58a65ad82549\", \"user_name\": \"koral\", \"user_id\": \"1230443\", \"user_authority\": 1, \"email\": \"user3@example.com\", \"discord_id\": \"discord3\"}";
+                        JsonNode _responce = _add.post(_addReq);
+                        System.out.println(_responce.toString());
+                    } catch (Exception _e) {
+                        _e.printStackTrace();
+                    }
                     break;
 
                 default:
