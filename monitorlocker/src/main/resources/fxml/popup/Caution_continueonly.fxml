@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="pane_popup" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="724.0" prefWidth="1024.0" style="-fx-background-radius: 14; -fx-background-color: #ffffffdd;" xmlns="http://javafx.com/javafx/8.0.411" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.p_continueonly">
+   <children>
+      <ImageView fx:id="img_sign" fitHeight="150.0" fitWidth="200.0" layoutX="437.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/sign_caution.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="txt_title" fill="#f39750" layoutX="265.0" layoutY="362.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Caution" textAlignment="CENTER" textOrigin="CENTER" wrappingWidth="493.3231201171875">
+         <font>
+            <Font name="System Bold" size="48.0" />
+         </font>
+      </Text>
+      <Text fx:id="txt_msg" fill="GREY" layoutX="209.0" layoutY="400.0" strokeType="OUTSIDE" strokeWidth="0.0" text="{text_message}" textAlignment="CENTER" textOrigin="TOP" wrappingWidth="606.1231689453125">
+         <font>
+            <Font size="34.0" />
+         </font>
+      </Text>
+      <FlowPane alignment="CENTER" columnHalignment="CENTER" hgap="15.0" layoutX="265.0" layoutY="588.0" prefHeight="64.0" prefWidth="493.0">
+         <children>
+            <Circle fill="#30a6ff" radius="23.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fill="#ff7373" radius="23.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" />
+            <Label fx:id="txt_continue" text="続ける">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </FlowPane>
+   </children>
+</AnchorPane>
