@@ -69,6 +69,11 @@ public class c_PortIdSelection implements Screen, Initializable {
             e.printStackTrace();
         }
 
+        // disable button
+        if(!Main.isUserAuthenticated()){
+            pane_nextStep.setDisable(true);
+            pane_nextStep.setOpacity(0.3);
+        }
         // init cursor
         selectedPortId = (selectedPortId>0 ? selectedPortId : 0);
         // first time
@@ -119,7 +124,7 @@ public class c_PortIdSelection implements Screen, Initializable {
         
         // apply port state
         if(isLendMode)
-            txt_portLendingState.setText("持ち出し可能");
+            txt_portLendingState.setText(Main.isUserAuthenticated() ? "持ち出し可能" : "未使用");
         else
             txt_portLendingState.setText(
                 String.format("%.13s%sさんが使用中", 
@@ -159,12 +164,22 @@ public class c_PortIdSelection implements Screen, Initializable {
         Main.PRIMARYSTAGE.getScene().setOnKeyPressed(e -> {
             switch(e.getCode()){
                 case Z: // Blue
-                    popup("/fxml/popup/ScanAuth.fxml");
-                    if(Main.isUserAuthenticated())
-                        changeScreen("/fxml/screen/WaitMonitorMove.fxml");
-                    else
-                        popup("/fxml/popup/CloseAnyKey.fxml");
-                    
+                    if(Main.isUserAuthenticated()){
+                        if(isLendMode){
+                            // lend
+                            // continue
+                        }else{
+                            // return
+                            if( lendingPortsMap.get(selectedPortId).equals(Main.getUser().getUserName())){ // user is owner 
+                                // continue
+                            }else{
+                                // popup: user is not owner
+                                // confirm > continue
+                            }
+                        }
+                    }else{
+                        // popup: user not authenticated
+                    }
                     break;
                 case X: // Red
                     changeScreen("/fxml/screen/States.fxml");

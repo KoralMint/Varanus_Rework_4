@@ -12,7 +12,7 @@ public class User {
 
     public String getUserName() { return user_name; }
     public String getUserId() { return user_id; }
-    public short getUserAuthority() { return user_authority; }
+    public short  getUserAuthority() { return user_authority; }
     public String getEmail() { return email; }
     public String getDiscordId() { return discord_id; }
 
@@ -22,7 +22,7 @@ public class User {
 
 
     public User(String tag_id, String user_name, String user_id, int user_authority, String email, String discord_id) {
-        System.out.println("User instance created..");
+        System.out.print("User instance created - ");
         this.tag_id = tag_id;
         this.user_name = user_name;
         this.user_id = user_id;
@@ -31,6 +31,8 @@ public class User {
         this.discord_id = discord_id;
 
         checkUserdataFetchLevel();
+        System.out.printf("Userdata fetch level: %d (%s)\n", userdataFetchLevel,
+            (userdataFetchLevel==2?"full": userdataFetchLevel==1?"partial": "empty"));
     }
     public User(String tag_id, String user_name, String user_id) {
         this(tag_id, user_name, user_id, 0, "", "");

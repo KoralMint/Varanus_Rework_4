@@ -32,7 +32,6 @@ public class NfcController {
     public boolean hasTagId() { return hasCorrectTagId; }
 
     public boolean readNfc() {
-        // TODO NFCリーダーからデータを読み取る
         lastNfcResult = waitForNfc();
 
         switch (lastNfcResult) { // nfc result

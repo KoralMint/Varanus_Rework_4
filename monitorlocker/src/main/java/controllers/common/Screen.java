@@ -3,7 +3,7 @@ package controllers.common;
 // import
 
 /* -- 機能、および実装したい物 --
- * [x] 別のScreenに遷移する TODO
+ * [x] 別のScreenに遷移する
  * [-]   遷移時に情報を受信できる
  * [-]   同様、送信できる
  * [ ] Popupを出せる
