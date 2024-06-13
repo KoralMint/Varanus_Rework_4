@@ -71,7 +71,7 @@ public class c_LendingLog implements Initializable, Screen{
     }
     
     @Override
-    public void receiveDataFromPrevious(Object data) { }
+    public void reset() { }
 
 	@Override
 	public void changeScreen(String fxml) {

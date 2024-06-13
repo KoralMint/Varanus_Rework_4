@@ -7,7 +7,6 @@ import javafx.scene.Scene;
 public class ScreenChanger {
     private FXMLLoader loader = null;
     public FXMLLoader getLoader() { return loader; }
-    private Object data = null;
 
     public ScreenChanger() {
     }
@@ -15,9 +14,6 @@ public class ScreenChanger {
     public void firstScreen(String fxml) {
             try {
                 loader = new FXMLLoader(Main.class.getResource(fxml));
-                if(data != null) {
-                    ((controllers.common.Mutual)loader.getController()).setRevievingData(data);
-                }
                 
                 Scene scene = new Scene(loader.load(), 1024, 768);
                 Main.PRIMARYSTAGE.setScene(scene);
@@ -37,9 +33,6 @@ public class ScreenChanger {
     public void changeScreen(String fxml) {
         try {
             loader = new FXMLLoader(Main.class.getResource(fxml));
-            if(data != null) {
-                ((controllers.common.Mutual)loader.getController()).setRevievingData(data);
-            }
 
             Main.PRIMARYSTAGE.getScene().setRoot(loader.load());
         
@@ -57,9 +50,5 @@ public class ScreenChanger {
 
     public void setTitle(String title) {
         Main.PRIMARYSTAGE.setTitle(title);
-    }
-
-    public void setSendData( Object data ) {
-        this.data = data;
     }
 }

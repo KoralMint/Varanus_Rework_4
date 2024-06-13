@@ -76,7 +76,6 @@ public class c_PortIdSelection implements Screen, Initializable {
         }
         // init cursor
         selectedPortId = (selectedPortId>0 ? selectedPortId : 0);
-        // first time
         if(firstTime) {
             firstTime = false;
             if (Main.isUserAuthenticated()){
@@ -140,10 +139,12 @@ public class c_PortIdSelection implements Screen, Initializable {
         }
     }
 
-
-    
     @Override
-    public void receiveDataFromPrevious(Object data) { }
+    public void reset() {
+        firstTime = true;
+        selectedPortId = 0;
+        isLendMode = true;
+    }
 
     @Override
     public void changeScreen(String fxml) {

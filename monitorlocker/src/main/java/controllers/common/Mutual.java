@@ -14,10 +14,6 @@ public interface Mutual{
 
     public void updateKeyBinding();
 
-    public void receiveDataFromPrevious(Object data);
-    default public void setRevievingData(Object data) {
-        receiveDataFromPrevious(data);
-    }
 }
 
 /* updateKeyBinding()雛形

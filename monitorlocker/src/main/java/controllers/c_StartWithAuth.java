@@ -88,7 +88,9 @@ public class c_StartWithAuth implements Screen, Initializable {
     }
 
     @Override
-    public void receiveDataFromPrevious(Object data) { }
+    public void reset() {
+        status = 0;
+    }
 
     @Override
     public void changeScreen(String fxml) {

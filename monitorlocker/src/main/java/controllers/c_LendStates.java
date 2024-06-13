@@ -89,9 +89,8 @@ public class c_LendStates implements Initializable, Screen{
 		//deployment initializing end
     }
 	
-	
-    @Override
-    public void receiveDataFromPrevious(Object data) { }
+	@Override
+    public void reset() { }
 
 	@Override
 	public void changeScreen(String fxml) {
