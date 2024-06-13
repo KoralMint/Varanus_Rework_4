@@ -3,7 +3,7 @@ package controllers.common;
 // import
 
 /* -- 機能、および実装したい物 --
- * [ ] 前画面の状況の把握
+ * [-] 前画面の状況の把握
  * [x] Key input
  * [ ] 外部への情報送受信
  * [x] ロード時に受信

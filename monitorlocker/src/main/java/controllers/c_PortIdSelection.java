@@ -64,7 +64,7 @@ public class c_PortIdSelection implements Screen, Initializable {
             for(JsonNode result : apiResponce.get("result"))
                 lendingPortsMap.put(result.get("port_id").asInt(), result.get("user_name").asText());
             lendingPortsMap.put(6, "koral");
-            System.out.println(lendingPortsMap);
+            // System.out.println(lendingPortsMap);
         }catch(Exception e){
             e.printStackTrace();
         }

@@ -21,13 +21,10 @@ public class Main extends Application {
         
 		// カレントワーキングディレクトリを取得
         String currentDirectory = System.getProperty("user.dir");
-		System.out.println("カレントワーキングディレクトリ: " + currentDirectory);
-        //java, javafxのバージョンを取得
-        System.out.println("Java Version: " + System.getProperty("java.version"));
-        System.out.println("JavaFX Version: " + System.getProperty("javafx.version"));
+		System.out.println("* カレントワーキングディレクトリ: " + currentDirectory);
         //java, javafxランタイムのバージョンを取得
-        System.out.println("Java Runtime Version: " + System.getProperty("java.runtime.version"));
-        System.out.println("JavaFX Runtime Version: " + System.getProperty("javafx.runtime.version"));
+        System.out.println("* Java Runtime Version: " + System.getProperty("java.runtime.version"));
+        System.out.println("* JavaFX Runtime Version: " + System.getProperty("javafx.runtime.version"));
 
 
         resetUser();
@@ -54,7 +51,7 @@ public class Main extends Application {
         user = _user;
         isUserAuthenticated = true;
     }
-    public static User getUser() { return user; } // getter
-    public static boolean isUserAuthenticated() { return isUserAuthenticated; } // getter
+    public static User getUser() { return user; }
+    public static boolean isUserAuthenticated() { return isUserAuthenticated; }
 }
 // shellscriptを動かせれば鍵操作できる
