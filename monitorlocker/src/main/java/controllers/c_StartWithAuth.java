@@ -73,7 +73,7 @@ public class c_StartWithAuth implements Screen, Initializable {
             // 読取失敗
             status = 3;
             System.out.println("読取失敗");
-            popup("/fxml/AuthenticationFailed.fxml");
+            popup("/fxml/Error_closeonly.fxml");
         }
 
         // 認証終了
@@ -81,7 +81,7 @@ public class c_StartWithAuth implements Screen, Initializable {
             changeScreen("/fxml/screen/PortIdSelection.fxml");
         }else{
             // 認証失敗
-            popup("/fxml/popup/AuthenticationFailed.fxml");
+            popup("/fxml/popup/Caution_continueonly.fxml");
             changeScreen("/fxml/screen/PortIdSelection.fxml");
         }
         status = 0;
@@ -100,9 +100,7 @@ public class c_StartWithAuth implements Screen, Initializable {
     }
 
     @Override
-    public void popup(String fxml) {
-        //認証失敗 > 最初の状態に戻るPopUp
-    }
+	public short popup(String fxml) { return 0; }
 
     @Override
     public void updateKeyBinding(){

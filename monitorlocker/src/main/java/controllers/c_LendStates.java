@@ -104,7 +104,7 @@ public class c_LendStates implements Initializable, Screen{
 	}
 
 	@Override
-	public void popup(String fxml) { }
+	public short popup(String fxml) { return 0; }
 
 	@Override
 	public void updateKeyBinding(){

@@ -156,9 +156,7 @@ public class c_PortIdSelection implements Screen, Initializable {
         sc.changeScreen(fxml);
     }
     @Override
-    public void popup(String fxml) {
-
-    }
+	public short popup(String fxml) { return 0; }
 
     @Override
     public void updateKeyBinding(){

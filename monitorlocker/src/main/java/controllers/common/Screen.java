@@ -9,12 +9,12 @@ package controllers.common;
  * [ ] Popupを出せる
  * [ ]   Popupにも情報を渡せる
  * [ ]   Popupが閉じられるまで処理を待機する
- * [?]   閉じたらKey inputを更新しなおす必要がある
+ * [ ]   閉じたらKey inputを更新しなおす必要がある
  *     遷移先のコントローラクラスがわかっている
  */
 
 public interface Screen extends Mutual{
     public void reset();
     public void changeScreen(String fxml);
-    public void popup(String fxml);
+    public short popup(String fxml);
 }

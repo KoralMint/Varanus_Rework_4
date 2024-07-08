@@ -27,7 +27,7 @@ public class ScreenChanger {
                 e.printStackTrace();
             }
     
-            ((controllers.common.Mutual)loader.getController()).updateKeyBinding();
+            ((controllers.common.Screen)loader.getController()).updateKeyBinding();
     }
     
     public void changeScreen(String fxml) {
@@ -44,7 +44,7 @@ public class ScreenChanger {
             e.printStackTrace();
         }
 
-        ((controllers.common.Mutual)loader.getController()).updateKeyBinding();
+        ((controllers.common.Screen)loader.getController()).updateKeyBinding();
 
     }
 
