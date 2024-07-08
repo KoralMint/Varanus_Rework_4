@@ -1,26 +1,30 @@
 package controllers;
 
+import controllers.common.Popup;
 import controllers.common.Screen;
 import Application.Main;
 import Application.Objects.*;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.concurrent.CompletableFuture;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
 public class c_StartWithAuth implements Screen, Initializable {
 
+    @FXML private AnchorPane mainPane;
     @FXML private AnchorPane bg_step1;
     @FXML private AnchorPane bg_step2;
     @FXML private Text text_description;
 
-    private int status = 0; // 0: 操作待ち, 1: 認証待ち, 2: 認証成功, 3: 認証失敗
+    private int status = 0; // 0: 操作待ち, 1: 認証待ち, 2: 認証成功, 3: 認証失敗 4: 認証エラー 5: 読取失敗
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -61,7 +65,6 @@ public class c_StartWithAuth implements Screen, Initializable {
                     status = 3;
                     System.out.println("認証失敗");
                     System.out.println(apiResponce.get("stats").asText());
-                    popup("/fxml/AuthenticationFailed.fxml");
                 }
 
             } catch (Exception e) {
@@ -73,22 +76,57 @@ public class c_StartWithAuth implements Screen, Initializable {
             // 読取失敗
             status = 3;
             System.out.println("読取失敗");
-            popup("/fxml/Error_closeonly.fxml");
         }
 
         // 認証終了
         if (status == 2) {
             changeScreen("/fxml/screen/PortIdSelection.fxml");
         }else{
-            // 認証失敗
-            popup("/fxml/popup/Caution_continueonly.fxml");
-            changeScreen("/fxml/screen/PortIdSelection.fxml");
+            String title, message;
+            switch (status) {
+                case 3:
+                    title = "認証失敗";
+                    message = "ユーザーが見つかりませんでした。\n";
+                    break;            
+                case 4:
+                    title = "認証エラー";
+                    message = "サーバーとの通信に失敗しました。\n";
+                    break;
+                case 5:
+                    title = "読取失敗";
+                    message = "カード情報が取得できませんでした。\n";
+                    break;
+                default:
+                    title = "エラー";
+                    message = "不明なエラーが発生しました。\n";
+                    break;
+            }
+            message += "続行すると、貸出/返却処理ができません。\n続行しますか？";
+
+            PopupGen popupGen = new PopupGen(PopupGen.type.Caution_selectable);
+            popupGen.setTitle(title);
+            popupGen.setMessage(message);
+            popupGen.show(mainPane);
+            
+            WaitUtils waitUtils = new WaitUtils();
+            CompletableFuture<Short> future = new CompletableFuture<>();
+            waitUtils.waitForResponseAsync(popupGen, future);
+            
+            future.whenComplete((result, ex) -> {
+                waitUtils.shutdown();
+                if (result == 1){
+                    changeScreen("/fxml/screen/PortIdSelection.fxml");
+                } else {
+                    popupGen.close();
+                    reset();
+                }
+            });
         }
-        status = 0;
     }
 
     @Override
     public void reset() {
+        updateKeyBinding();
         status = 0;
     }
 
@@ -100,7 +138,10 @@ public class c_StartWithAuth implements Screen, Initializable {
     }
 
     @Override
-	public short popup(String fxml) { return 0; }
+	public short popup(String type, String title, String message, int timeout){
+        
+        return 0;    
+    }
 
     @Override
     public void updateKeyBinding(){

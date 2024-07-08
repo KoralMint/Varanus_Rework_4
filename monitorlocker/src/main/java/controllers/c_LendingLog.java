@@ -85,7 +85,9 @@ public class c_LendingLog implements Initializable, Screen{
 	}
 
 	@Override
-	public short popup(String fxml) { return 0; }
+	public short popup(String fxml, String title, String message, int timeout){
+        return 0;
+    }
 	
 	@Override
 	public void updateKeyBinding(){

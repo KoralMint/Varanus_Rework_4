@@ -14,6 +14,8 @@ package controllers.common;
 public interface Popup extends Mutual{
     public void setTitle(String title);
     public void setMessage(String message);
-    public void setTimeout(int timeout);
+    // public void setTimeout(int timeout);
+    public void waitForResponse();
+    public void cansel();
     public short getStat();
 }
