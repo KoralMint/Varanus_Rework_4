@@ -1,8 +1,7 @@
 package controllers;
 
 import Application.Main;
-import Application.Objects.HttpIO;
-import Application.Objects.ScreenChanger;
+import Application.Objects.*;
 import controllers.common.Screen;
 
 import java.io.FileNotFoundException;
@@ -102,11 +101,6 @@ public class c_LendStates implements Initializable, Screen{
 		}
 		sc.changeScreen(fxml);
 	}
-
-	@Override
-	public short popup(String fxml, String title, String message, int timeout){
-        return 0;
-    }
 
 	@Override
 	public void updateKeyBinding(){

@@ -68,12 +68,12 @@ public class PopupGen {
             return;
         }
         popup.cansel();
-        System.out.println("popup closing");
         Node nodeToRemove = parent.lookup("#pane_popup");
         if (nodeToRemove != null) {
             Platform.runLater(() -> { parent.getChildren().remove(nodeToRemove); });
+            System.out.println("popup closing");
         }else{
-            System.err.println("id: popup_pane not found");
+            // System.err.println("id: popup_pane not found");
         }
     }
 }

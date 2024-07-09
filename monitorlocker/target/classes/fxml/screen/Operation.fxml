@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.Double?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Arc?>
+<?import javafx.scene.shape.Polygon?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.c_Operation">
+   <top>
+      <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" focusTraversable="false" maxHeight="1.7976931348623157E308" minHeight="-Infinity" prefHeight="44.0" prefWidth="335.0" text="Varanus" textFill="#30a6ff" BorderPane.alignment="CENTER">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+   </top>
+   <center>
+      <AnchorPane fx:id="mainPane" maxHeight="-Infinity" prefHeight="724.0" prefWidth="1024.0" BorderPane.alignment="CENTER">
+         <children>
+            <GridPane alignment="CENTER" layoutX="32.0" layoutY="35.0" prefHeight="656.0" prefWidth="946.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <columnConstraints>
+                <ColumnConstraints fillWidth="false" halignment="CENTER" hgrow="NEVER" maxWidth="490.60003662109375" minWidth="10.0" prefWidth="390.60003662109375" />
+                <ColumnConstraints fillWidth="false" halignment="CENTER" hgrow="NEVER" maxWidth="604.2000122070312" minWidth="10.0" prefWidth="603.3999633789062" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints fillHeight="false" maxHeight="484.8000244140625" minHeight="10.0" prefHeight="484.8000244140625" valignment="CENTER" vgrow="NEVER" />
+                <RowConstraints fillHeight="false" maxHeight="356.79999389648435" minHeight="10.0" prefHeight="239.99997558593748" valignment="CENTER" vgrow="NEVER" />
+              </rowConstraints>
+               <children>
+                  <AnchorPane maxWidth="366.0" prefHeight="188.0" prefWidth="366.0" style="-fx-background-color: #ff7373; -fx-background-radius: 10;" GridPane.rowIndex="1">
+                     <children>
+                        <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="19.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/sign_deny.png" />
+                           </image>
+                        </ImageView>
+                        <Text fill="WHITE" layoutX="122.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="取消" textAlignment="CENTER" wrappingWidth="208.0">
+                           <font>
+                              <Font name="System Bold" size="65.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane maxWidth="710.0" prefHeight="188.0" prefWidth="573.0" style="-fx-background-color: #30a6ff; -fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <children>
+                        <Text fill="WHITE" layoutX="259.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="完了" textAlignment="CENTER" wrappingWidth="208.0">
+                           <font>
+                              <Font name="System Bold" size="65.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="txt_autoFInishInteraction" fill="WHITE" layoutX="259.0" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0" text="{ automatically continue }" textAlignment="CENTER" wrappingWidth="208.0">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="19.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/sign_allow.png" />
+                           </image>
+                        </ImageView>
+                        <Arc fx:id="arc_autoFinish" fill="#ffffff00" layoutX="94.0" layoutY="94.0" length="240.0" radiusX="75.0" radiusY="75.0" startAngle="-150.0" stroke="WHITE" strokeLineCap="ROUND" strokeWidth="10.0" />
+                     </children>
+                  </AnchorPane>
+                  <GridPane fx:id="grid_portPosition" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="360.0" prefWidth="389.0">
+                    <columnConstraints>
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="180.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="90.0" valignment="CENTER" vgrow="NEVER" />
+                      <RowConstraints minHeight="10.0" prefHeight="90.0" valignment="CENTER" vgrow="NEVER" />
+                      <RowConstraints minHeight="10.0" prefHeight="90.0" valignment="CENTER" vgrow="NEVER" />
+                        <RowConstraints minHeight="10.0" prefHeight="90.0" valignment="CENTER" vgrow="NEVER" />
+                    </rowConstraints>
+                     <children>
+                        <AnchorPane maxWidth="710.0" prefHeight="74.0" prefWidth="21.0" style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="1">
+                           <GridPane.margin>
+                              <Insets bottom="7.5" left="7.5" right="7.5" top="7.5" />
+                           </GridPane.margin>
+                        </AnchorPane>
+                        <AnchorPane maxWidth="710.0" prefHeight="74.0" prefWidth="21.0" style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets bottom="7.5" left="7.5" right="7.5" top="7.5" />
+                           </GridPane.margin>
+                        </AnchorPane>
+                        <AnchorPane maxWidth="710.0" prefHeight="74.0" prefWidth="21.0" style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <GridPane.margin>
+                              <Insets bottom="7.5" left="7.5" right="7.5" top="7.5" />
+                           </GridPane.margin>
+                        </AnchorPane>
+                        <AnchorPane maxWidth="710.0" prefHeight="74.0" prefWidth="21.0" style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <GridPane.margin>
+                              <Insets bottom="7.5" left="7.5" right="7.5" top="7.5" />
+                           </GridPane.margin>
+                        </AnchorPane>
+                        <AnchorPane maxWidth="710.0" prefHeight="74.0" prefWidth="21.0" style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="3">
+                           <GridPane.margin>
+                              <Insets bottom="7.5" left="7.5" right="7.5" top="7.5" />
+                           </GridPane.margin>
+                        </AnchorPane>
+                        <AnchorPane maxWidth="710.0" prefHeight="74.0" prefWidth="21.0" style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets bottom="7.5" left="7.5" right="7.5" top="7.5" />
+                           </GridPane.margin>
+                        </AnchorPane>
+                        <AnchorPane maxWidth="710.0" prefHeight="74.0" prefWidth="21.0" style="-fx-background-color: #ff7373; -fx-background-radius: 10;" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                           <GridPane.margin>
+                              <Insets bottom="7.5" left="7.5" right="7.5" top="7.5" />
+                           </GridPane.margin>
+                        </AnchorPane>
+                        <AnchorPane maxWidth="710.0" prefHeight="74.0" prefWidth="21.0" style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                           <GridPane.margin>
+                              <Insets bottom="7.5" left="7.5" right="7.5" top="7.5" />
+                           </GridPane.margin>
+                        </AnchorPane>
+                        <Polygon rotate="-90.0" scaleX="0.5" scaleY="0.4" stroke="#ffffff00" strokeType="INSIDE" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                          <points>
+                            <Double fx:value="-50.0" />
+                            <Double fx:value="40.0" />
+                            <Double fx:value="50.0" />
+                            <Double fx:value="40.0" />
+                            <Double fx:value="0.0" />
+                            <Double fx:value="-60.0" />
+                          </points>
+                        </Polygon>
+                        <Polygon layoutX="371.0" layoutY="239.0" opacity="0.0" rotate="-90.0" scaleX="0.5" scaleY="0.4" stroke="#ffffff00" strokeType="INSIDE" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                           <points>
+                              <Double fx:value="-50.0" />
+                              <Double fx:value="40.0" />
+                              <Double fx:value="50.0" />
+                              <Double fx:value="40.0" />
+                              <Double fx:value="0.0" />
+                              <Double fx:value="-60.0" />
+                           </points>
+                        </Polygon>
+                        <Polygon layoutX="371.0" layoutY="151.0" opacity="0.0" rotate="-90.0" scaleX="0.5" scaleY="0.4" stroke="#ffffff00" strokeType="INSIDE" GridPane.columnIndex="4">
+                           <points>
+                              <Double fx:value="-50.0" />
+                              <Double fx:value="40.0" />
+                              <Double fx:value="50.0" />
+                              <Double fx:value="40.0" />
+                              <Double fx:value="0.0" />
+                              <Double fx:value="-60.0" />
+                           </points>
+                        </Polygon>
+                        <Polygon layoutX="371.0" layoutY="64.0" opacity="0.0" rotate="-90.0" scaleX="0.5" scaleY="0.4" stroke="#ffffff00" strokeType="INSIDE" GridPane.columnIndex="4" GridPane.rowIndex="3">
+                           <points>
+                              <Double fx:value="-50.0" />
+                              <Double fx:value="40.0" />
+                              <Double fx:value="50.0" />
+                              <Double fx:value="40.0" />
+                              <Double fx:value="0.0" />
+                              <Double fx:value="-60.0" />
+                           </points>
+                        </Polygon>
+                        <Polygon layoutX="371.0" layoutY="326.0" opacity="0.0" rotate="90.0" scaleX="0.5" scaleY="0.4" stroke="#ffffff00" strokeType="INSIDE" GridPane.rowIndex="3">
+                           <points>
+                              <Double fx:value="-50.0" />
+                              <Double fx:value="40.0" />
+                              <Double fx:value="50.0" />
+                              <Double fx:value="40.0" />
+                              <Double fx:value="0.0" />
+                              <Double fx:value="-60.0" />
+                           </points>
+                        </Polygon>
+                        <Polygon layoutX="40.0" layoutY="326.0" opacity="0.0" rotate="90.0" scaleX="0.5" scaleY="0.4" stroke="#ffffff00" strokeType="INSIDE" GridPane.rowIndex="2">
+                           <points>
+                              <Double fx:value="-50.0" />
+                              <Double fx:value="40.0" />
+                              <Double fx:value="50.0" />
+                              <Double fx:value="40.0" />
+                              <Double fx:value="0.0" />
+                              <Double fx:value="-60.0" />
+                           </points>
+                        </Polygon>
+                        <Polygon layoutX="40.0" layoutY="239.0" opacity="0.0" rotate="90.0" scaleX="0.5" scaleY="0.4" stroke="#ffffff00" strokeType="INSIDE" GridPane.rowIndex="1">
+                           <points>
+                              <Double fx:value="-50.0" />
+                              <Double fx:value="40.0" />
+                              <Double fx:value="50.0" />
+                              <Double fx:value="40.0" />
+                              <Double fx:value="0.0" />
+                              <Double fx:value="-60.0" />
+                           </points>
+                        </Polygon>
+                        <Polygon layoutX="40.0" layoutY="151.0" opacity="0.0" rotate="90.0" scaleX="0.5" scaleY="0.4" stroke="#ffffff00" strokeType="INSIDE">
+                           <points>
+                              <Double fx:value="-50.0" />
+                              <Double fx:value="40.0" />
+                              <Double fx:value="50.0" />
+                              <Double fx:value="40.0" />
+                              <Double fx:value="0.0" />
+                              <Double fx:value="-60.0" />
+                           </points>
+                        </Polygon>
+                        <Text fx:id="txt_portId" strokeType="OUTSIDE" strokeWidth="0.0" text="6" textAlignment="CENTER" wrappingWidth="159.20001220703125" GridPane.columnIndex="2" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.rowSpan="2" GridPane.vgrow="NEVER">
+                           <font>
+                              <Font name="System Bold" size="150.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="txt_operationType" strokeType="OUTSIDE" strokeWidth="0.0" text="返却" textAlignment="CENTER" wrappingWidth="208.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="System Bold" size="40.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </GridPane>
+               </children>
+            </GridPane>
+         </children></AnchorPane>
+   </center>
+</BorderPane>

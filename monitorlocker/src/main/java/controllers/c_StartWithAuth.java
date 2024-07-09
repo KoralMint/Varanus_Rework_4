@@ -157,25 +157,15 @@ public class c_StartWithAuth implements Screen, Initializable {
                     break;
             }
 
-            PopupGen popupGen = new PopupGen(popupType);
-            popupGen.setTitle(title);
-            popupGen.setMessage(message);
-            popupGen.setTimeout(timeout);
-            popupGen.show(mainPane);
-            
-            WaitUtils ppWait = new WaitUtils();
-            CompletableFuture<Short> ppFuture = new CompletableFuture<>();
-            ppWait.waitForResponseAsync(popupGen, ppFuture);
-            
-            ppFuture.whenComplete((result, ex) -> {
-                ppWait.shutdown();
-                if ( status == 3 && result == 1 ){
+            RunnableWithArg onClose = (result) -> {
+                if ( status == 3 && (short)result == 1 ){
                     changeScreen("/fxml/screen/PortIdSelection.fxml");
                 } else {
-                    popupGen.close();
                     reset();
                 }
-            });
+            };
+
+            popup( mainPane, popupType, title, message, timeout, onClose );
         }
     }
 
@@ -194,12 +184,6 @@ public class c_StartWithAuth implements Screen, Initializable {
         ScreenChanger sc = new ScreenChanger();
         // "/fxml/PortIdSelection.fxml"
         sc.changeScreen(fxml);
-    }
-
-    @Override
-	public short popup(String type, String title, String message, int timeout){
-        
-        return 0;    
     }
 
     @Override

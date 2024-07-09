@@ -5,6 +5,7 @@ import java.util.concurrent.*;
 public class WaitUtils {
     private final Object lock = new Object();
     private ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+    private ScheduledFuture<?> timeoutFuture;
 
     public void waitForResponseAsync(PopupGen popupGen, CompletableFuture<Short> future) {
         Task task = () -> {
@@ -30,9 +31,8 @@ public class WaitUtils {
         });
         t.start();
         if (timeoutMillis > 0) {
-            System.out.println("timeout: " + timeoutMillis);
             // タイムアウト処理をスケジュール
-            scheduler.schedule(() -> {
+            timeoutFuture = scheduler.schedule(() -> {
                 synchronized (lock) {
                     lock.notify(); // タイムアウト時にも待機中のスレッドを再開
                 }
@@ -44,7 +44,10 @@ public class WaitUtils {
     }
 
     public void shutdown() {
-        scheduler.shutdown();
+        if (timeoutFuture != null) {
+            timeoutFuture.cancel(true); // タイムアウト処理をキャンセル
+        }
+        scheduler.shutdownNow(); // スケジューラーを即時シャットダウン
     }
 
     public interface Task {

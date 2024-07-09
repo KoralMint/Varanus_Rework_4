@@ -12,8 +12,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import Application.Main;
-import Application.Objects.HttpIO;
-import Application.Objects.ScreenChanger;
+import Application.Objects.*;
 import controllers.common.Screen;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -83,11 +82,6 @@ public class c_LendingLog implements Initializable, Screen{
 		}
 		sc.changeScreen(fxml);
 	}
-
-	@Override
-	public short popup(String fxml, String title, String message, int timeout){
-        return 0;
-    }
 	
 	@Override
 	public void updateKeyBinding(){
