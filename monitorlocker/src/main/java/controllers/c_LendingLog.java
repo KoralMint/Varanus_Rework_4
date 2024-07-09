@@ -82,7 +82,7 @@ public class c_LendingLog implements Initializable, Screen{
 		}
 		sc.changeScreen(fxml);
 	}
-	
+
 	@Override
 	public void updateKeyBinding(){
         Main.PRIMARYSTAGE.getScene().setOnKeyPressed(e -> {

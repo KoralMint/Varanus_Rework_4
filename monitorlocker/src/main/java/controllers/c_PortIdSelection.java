@@ -36,10 +36,10 @@ public class c_PortIdSelection implements Screen, Initializable {
 
     private static boolean firstTime = true;
     private static int selectedPortId;
-    private boolean isLendMode = true;
+    private static boolean isLendMode = true;
     Map<Integer, String> lendingPortsMap;
-    public int getSelectedPortId(){ return selectedPortId; }
-    public boolean getIsLendMode(){ return isLendMode; }
+    public static int getSelectedPortId(){ return selectedPortId; }
+    public static boolean getIsLendMode(){ return isLendMode; }
 
     //---------------------------------------------------------------------//
 
@@ -120,6 +120,10 @@ public class c_PortIdSelection implements Screen, Initializable {
         btntxt_nextStepInteraction.setText(isLendMode? "持出" : "返却");
         
         // apply port state
+        applyPortState();
+    }
+
+    private void applyPortState() {
         if(isLendMode)
             txt_portLendingState.setText(Main.isUserAuthenticated() ? "持ち出し可能" : "未使用");
         else
@@ -147,10 +151,6 @@ public class c_PortIdSelection implements Screen, Initializable {
     @Override
     public void changeScreen(String fxml) {
         ScreenChanger sc = new ScreenChanger();
-        if(fxml.equals("/fxml/States.fxml")){
-        }else if(true){
-            
-        }
         sc.changeScreen(fxml);
     }
 
@@ -163,17 +163,41 @@ public class c_PortIdSelection implements Screen, Initializable {
                         if(isLendMode){
                             // lend
                             // continue
+                            System.out.println("Operation: lend");
                         }else{
                             // return
                             if( lendingPortsMap.get(selectedPortId).equals(Main.getUser().getUserName())){ // user is owner 
                                 // continue
+                                System.out.println("Operation: return");
+                                changeScreen("/fxml/screen/Operation.fxml");
                             }else{
-                                // popup: user is not owner
-                                // confirm > continue
+                                popup(mainPane,PopupGen.type.Caution_selectable,
+                                "所持者が異なります",
+                                "続行すると、代理で返却したと見なされます。\n続行しますか？",
+                                -1,
+                                (result) -> {
+                                    if((short)result == 1){
+                                        // continue
+                                        System.out.println("Operation: return ( as proxy )");
+                                        changeScreen("/fxml/screen/Operation.fxml");
+                                    }else{
+                                        // do nothing
+                                        updateKeyBinding();
+                                    }
+                                });
                             }
                         }
                     }else{
                         // popup: user not authenticated
+                        System.out.println(" Denied: user not authenticated ");
+                        popup(mainPane, PopupGen.type.Error_closeonly, 
+                        "許可されていません",
+                        "再度認証するか、管理者にユーザー登録申請を行ってください。", 
+                        -1,
+                        (result) -> { 
+                            reset();
+                            changeScreen("/fxml/screen/StartWithAuthentication.fxml");
+                        });
                     }
                     break;
                 case X: // Red

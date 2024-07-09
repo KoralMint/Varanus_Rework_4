@@ -8,9 +8,6 @@ public class ScreenChanger {
     private FXMLLoader loader = null;
     public FXMLLoader getLoader() { return loader; }
 
-    public ScreenChanger() {
-    }
-
     public void firstScreen(String fxml) {
             try {
                 loader = new FXMLLoader(Main.class.getResource(fxml));

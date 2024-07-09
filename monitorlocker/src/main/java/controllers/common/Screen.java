@@ -14,10 +14,10 @@ import javafx.scene.layout.AnchorPane;
  * [x] 別のScreenに遷移する
  * [-]   遷移時に情報を受信できる
  * [-]   同様、送信できる
- * [ ] Popupを出せる
- * [ ]   Popupにも情報を渡せる
- * [ ]   Popupが閉じられるまで処理を待機する
- * [ ]   閉じたらKey inputを更新しなおす必要がある
+ * [x] Popupを出せる
+ * [x]   Popupにも情報を渡せる
+ * [x]   Popupが閉じられるまで処理を待機する
+ * [x]   閉じたらKey inputを更新しなおす必要がある
  *     遷移先のコントローラクラスがわかっている
  */
 
@@ -38,6 +38,7 @@ public interface Screen extends Mutual{
         ppFuture.whenComplete( (result, ex) -> {
             ppWait.shutdown();
             popupGen.close();
+            System.out.println("runするでぇ");
             if (onClose != null) onClose.run(result);
         });
     }

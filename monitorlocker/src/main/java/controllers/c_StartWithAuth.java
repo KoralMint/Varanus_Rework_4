@@ -157,15 +157,13 @@ public class c_StartWithAuth implements Screen, Initializable {
                     break;
             }
 
-            RunnableWithArg onClose = (result) -> {
+            popup( mainPane, popupType, title, message, timeout, (result) -> {
                 if ( status == 3 && (short)result == 1 ){
                     changeScreen("/fxml/screen/PortIdSelection.fxml");
                 } else {
                     reset();
                 }
-            };
-
-            popup( mainPane, popupType, title, message, timeout, onClose );
+            } );
         }
     }
 
