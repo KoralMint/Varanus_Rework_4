@@ -1,13 +1,13 @@
 package controllers.popup;
 
 import Application.Main;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
-public class p_Caution_continueonly implements controllers.common.Popup, Initializable, Runnable {
+public class p_Caution_continueonly implements controllers.common.Popup, Initializable {
     
     private short stat = -1;
-    private int timeout = 3000;
     private final Object lock = new Object();
 
     @FXML private javafx.scene.text.Text txt_title;
@@ -21,33 +21,17 @@ public class p_Caution_continueonly implements controllers.common.Popup, Initial
 
     @Override
     public void setTitle(String title) {
-        txt_title.setText(title);
+        Platform.runLater(() -> { txt_title.setText(title); });
     }
     @Override
     public void setMessage(String message) {
-        txt_msg.setText(message);
+        Platform.runLater(() -> { txt_msg.setText(message); });
     }
 
     @Override
     public void waitForResponse() {
-        Thread t = new Thread(this);
-        t.start();
-        if (timeout > 0) {
-            try {
-                Thread.sleep(timeout);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            stat = 0;
-            stop();
-        }
-    }
-
-    @Override
-    public void run() {
-        System.out.println("Caution_continueonly popup is running");
         synchronized (lock) {
-            while (stat<0) {
+            while (stat < 0) {
                 try {
                     lock.wait();
                 } catch (InterruptedException e) {
@@ -55,8 +39,6 @@ public class p_Caution_continueonly implements controllers.common.Popup, Initial
                 }
             }
         }
-        // thread closed
-        System.out.println("Caution_continueonly popup thread closed");
     }
 
     private void stop() {
@@ -69,8 +51,8 @@ public class p_Caution_continueonly implements controllers.common.Popup, Initial
     public void cansel() {
         if (stat < 0) {
             stat = 0;
-            stop();
         }
+        stop();
     }
 
     @Override
@@ -84,7 +66,7 @@ public class p_Caution_continueonly implements controllers.common.Popup, Initial
                 // B R, < > ^ v
                 case Z: // Blue
                 case X: // Red
-                    System.out.println("Blue/Red key pressed > continue");
+                    System.out.println("Blue/Red key pressed > cancel");
                     stat = 0;
                     stop();
                     break;

@@ -12,10 +12,16 @@ public class WaitUtils {
             future.complete(popupGen.getResponse()); // 結果を通知
         };
         int timeout = popupGen.getTimeout();
-        waitForTask(task, timeout);
+        waitForTask(task, timeout, () -> {popupGen.close();});
     }
 
+    public void waitForTask(Task task) {
+        waitForTask(task, -1, null);
+    }
     public void waitForTask(Task task, int timeoutMillis) {
+        waitForTask(task, timeoutMillis, null);
+    }
+    public void waitForTask(Task task, int timeoutMillis, Task onTimeout) {
         Thread t = new Thread(() -> {
             task.run(); // タスク実行
             synchronized (lock) {
@@ -24,10 +30,14 @@ public class WaitUtils {
         });
         t.start();
         if (timeoutMillis > 0) {
+            System.out.println("timeout: " + timeoutMillis);
             // タイムアウト処理をスケジュール
             scheduler.schedule(() -> {
                 synchronized (lock) {
                     lock.notify(); // タイムアウト時にも待機中のスレッドを再開
+                }
+                if (onTimeout != null) {
+                    onTimeout.run(); // タイムアウト時の処理
                 }
             }, timeoutMillis, TimeUnit.MILLISECONDS);
         }
@@ -37,7 +47,7 @@ public class WaitUtils {
         scheduler.shutdown();
     }
 
-    private interface Task {
+    public interface Task {
         void run();
     }
 }

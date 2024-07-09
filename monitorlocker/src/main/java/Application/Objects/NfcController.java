@@ -14,8 +14,8 @@ public class NfcController {
 
 
     private String correctTagId;
-    private boolean hasCorrectTagId;
-    private String lastNfcResult;
+    private String status;
+    private short statusCode;
 
     public NfcController() {
         System.out.println("NfcController instance created.");
@@ -24,30 +24,35 @@ public class NfcController {
 
     public void reset() {
         correctTagId = "";
-        hasCorrectTagId = false;
-        lastNfcResult = "";
+        status = "";
+        statusCode = 0;
     }
 
     public String getTagId()  { return correctTagId; }
-    public boolean hasTagId() { return hasCorrectTagId; }
+    public boolean hasTagId() { return !correctTagId.equals(""); }
+    public String getStatus() { return status; }
+    public short getStatusCode() { return statusCode; }
 
     public boolean readNfc() {
-        lastNfcResult = waitForNfc();
+        String resultStatus = waitForNfc();
 
-        switch (lastNfcResult) { // nfc result
+        switch (resultStatus) { // nfc result
             case "-1": // reader timeout
-                System.err.println("NFC: Reader timeout.");
+                status = "Reader timeout.";
+                statusCode = -1;
                 break;
             case "-2": // incorrect card type | reader not found
-                System.err.println("NFC: failed to get card data. check your card type or reader.");
+                status = "Incorrect card type or reader not found.";
+                statusCode = -2;
                 break;
             case "-3": // terminated
-                System.err.println("NFC: terminated.");
+                status = "Terminated.";
+                statusCode = -3;
                 break;
             default:
-                System.out.println("NFC: successfully read tag id.");
-                correctTagId = lastNfcResult;
-                hasCorrectTagId = true;
+                status = "successfully read tag id.";
+                statusCode = 0;
+                correctTagId = resultStatus;
                 return true;
         }
         return false;

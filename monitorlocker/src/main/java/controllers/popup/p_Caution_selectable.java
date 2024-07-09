@@ -30,8 +30,6 @@ public class p_Caution_selectable implements controllers.common.Popup, Initializ
 
     @Override
     public void waitForResponse() {
-        System.out.println("Caution_selectable popup is running");
-
         synchronized (lock) {
             while (stat < 0) {
                 try {
@@ -41,7 +39,6 @@ public class p_Caution_selectable implements controllers.common.Popup, Initializ
                 }
             }
         }
-        System.out.println("Caution_selectable popup thread closed");
     }
 
     private void stop() {
@@ -54,8 +51,8 @@ public class p_Caution_selectable implements controllers.common.Popup, Initializ
     public void cansel() {
         if (stat < 0) {
             stat = 0;
-            stop();
         }
+        stop();
     }
 
     @Override

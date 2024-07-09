@@ -1,7 +1,9 @@
 package Application.Objects;
 
 import controllers.common.Popup;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 
 public class PopupGen {
@@ -10,10 +12,8 @@ public class PopupGen {
     private String fxml;
     private String title, message;
 
-    private short stat = -1;
     private int timeout = 3000;
     private AnchorPane parent;
-    private FXMLLoader loader;
 
     // Caution_selectable | Caution_continueonly | Success_closeonly | Error_closeonly
     public static class type {
@@ -42,7 +42,7 @@ public class PopupGen {
 
     public void show(AnchorPane parent) {
         this.parent = parent;
-        loader = new FXMLLoader(getClass().getResource(fxml));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
         try {
             parent.getChildren().add(loader.load());
         } catch (Exception e) {
@@ -64,11 +64,16 @@ public class PopupGen {
         return popup.getStat();
     }
     public void close() {
-        if (popup == null) {
-            System.err.println("popup is null");
+        if (popup == null || parent == null) {
             return;
         }
         popup.cansel();
-        parent.getChildren().remove(loader.getRoot());
+        System.out.println("popup closing");
+        Node nodeToRemove = parent.lookup("#pane_popup");
+        if (nodeToRemove != null) {
+            Platform.runLater(() -> { parent.getChildren().remove(nodeToRemove); });
+        }else{
+            System.err.println("id: popup_pane not found");
+        }
     }
 }
