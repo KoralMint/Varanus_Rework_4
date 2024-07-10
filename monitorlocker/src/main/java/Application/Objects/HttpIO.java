@@ -46,6 +46,7 @@ public class HttpIO {
         if(method != "POST"){
             throw new Exception("Method is not POST");
         }
+        System.out.println("POST: " + url + " - " + body);
         try{
 
             //1.接続するための設定をする
@@ -101,6 +102,7 @@ public class HttpIO {
         if(method != "GET"){
             throw new Exception("Method is not GET");
         }
+        System.out.println("GET: " + url);
         try{
             //1.接続するための設定をする
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();

@@ -86,7 +86,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="90.0" valignment="CENTER" vgrow="NEVER" />
                     </rowConstraints>
                      <children>
-                        <Polygon rotate="-90.0" scaleX="0.5" scaleY="0.4" stroke="#ffffff00" strokeType="INSIDE" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                        <Polygon opacity="0.0" rotate="-90.0" scaleX="0.5" scaleY="0.4" stroke="#ffffff00" strokeType="INSIDE" GridPane.columnIndex="4" GridPane.rowIndex="2">
                           <points>
                             <Double fx:value="-50.0" />
                             <Double fx:value="40.0" />
@@ -166,12 +166,12 @@
                               <Double fx:value="-60.0" />
                            </points>
                         </Polygon>
-                        <Text fx:id="txt_portId" strokeType="OUTSIDE" strokeWidth="0.0" text="6" textAlignment="CENTER" wrappingWidth="159.20001220703125" GridPane.columnIndex="2" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.rowSpan="2" GridPane.vgrow="NEVER">
+                        <Text fx:id="txt_portId" strokeType="OUTSIDE" strokeWidth="0.0" text="1" textAlignment="CENTER" translateY="-10.0" wrappingWidth="159.20001220703125" GridPane.columnIndex="2" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.rowSpan="2" GridPane.vgrow="NEVER">
                            <font>
                               <Font name="System Bold" size="150.0" />
                            </font>
                         </Text>
-                        <Text fx:id="txt_operationType" strokeType="OUTSIDE" strokeWidth="0.0" text="返却" textAlignment="CENTER" wrappingWidth="208.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                        <Text fx:id="txt_operationType" strokeType="OUTSIDE" strokeWidth="0.0" text="{operation}" textAlignment="CENTER" wrappingWidth="208.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                            <font>
                               <Font name="System Bold" size="40.0" />
                            </font>
@@ -237,6 +237,11 @@
                               <Insets bottom="7.5" left="7.5" right="7.5" top="7.5" />
                            </GridPane.margin>
                         </Pane>
+                        <Text fx:id="txt_operationType1" strokeType="OUTSIDE" strokeWidth="0.0" text="開錠中" textAlignment="CENTER" wrappingWidth="208.0" GridPane.columnIndex="2">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
                      </children>
                   </GridPane>
                </children>

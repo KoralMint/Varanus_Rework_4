@@ -37,13 +37,15 @@ public class c_LendingLog implements Initializable, Screen{
         try {
                 ObjectMapper mapper = new ObjectMapper();
                 ObjectNode node = mapper.createObjectNode();
-                node.put("limit", 10);
-                node.put("from", 0);
-                node.put("to", 9);
+                node.put("limit", 9);
+                node.put("from", -1);
+                node.put("to", -10);
 				HttpIO post = new HttpIO("http://127.0.0.1:5000/api/lendinglog/fetch", mapper.writeValueAsString(node));
             	JsonNode apiResponce = post.post();
 
-				// System.out.println(apiResponce.toString());
+                if (!apiResponce.has("result"))
+                    throw new Exception("No result in response");
+                // get length
 				for ( JsonNode n : apiResponce.get("result")) {
 					FXMLLoader logelm_loader = new FXMLLoader(getClass().getResource("/fxml/screen/Log_element.fxml"));
 					AnchorPane pane = (AnchorPane) logelm_loader.load();

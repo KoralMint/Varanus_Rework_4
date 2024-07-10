@@ -69,7 +69,7 @@ public class c_StartWithAuth implements Screen, Initializable {
                             apiResponce.get("discord_id").asText()
                         );
                         Main.setUser(_user);
-                        System.out.printf( "Welcome %s ( %s )\n", _user.getUserName(), _user.getUserId() );
+                        System.out.printf( "Welcome %s ( %s ) - %s\n", _user.getUserName(), _user.getUserId(), _user.getTagId() );
                     }else{
                         // 認証失敗
                         status = 3;

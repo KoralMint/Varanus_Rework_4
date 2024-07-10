@@ -10,6 +10,7 @@ public class User {
                     discord_id;
     private short user_authority;
 
+    public String getTagId() { return tag_id; }
     public String getUserName() { return user_name; }
     public String getUserId() { return user_id; }
     public short  getUserAuthority() { return user_authority; }

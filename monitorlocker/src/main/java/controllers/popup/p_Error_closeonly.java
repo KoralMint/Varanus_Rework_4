@@ -66,7 +66,7 @@ public class p_Error_closeonly implements controllers.common.Popup, Initializabl
                 // B R, < > ^ v
                 case Z: // Blue
                 case X: // Red
-                    System.out.println("Blue/Red key pressed > cancel");
+                    System.out.println("Blue/Red key pressed > close");
                     stat = 0;
                     stop();
                     break;

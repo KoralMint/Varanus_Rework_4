@@ -66,7 +66,7 @@ public class p_Caution_continueonly implements controllers.common.Popup, Initial
                 // B R, < > ^ v
                 case Z: // Blue
                 case X: // Red
-                    System.out.println("Blue/Red key pressed > cancel");
+                    System.out.println("Blue/Red key pressed > continue");
                     stat = 0;
                     stop();
                     break;

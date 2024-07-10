@@ -1,8 +1,10 @@
 package controllers;
 
 import controllers.common.Screen;
+
 import Application.Main;
 import Application.Objects.*;
+
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -24,7 +26,8 @@ public class c_Operation implements Screen, Initializable{
     @FXML private Text txt_operationType;
     @FXML private Text txt_portId;
     
-    public static int autoFinishTime = 60000;
+    public static int autoFinishTime = 10000;
+    private AnimationTimer timer = null;
 
     private int selectedPortId;
     private boolean isLendMode = true;
@@ -77,7 +80,7 @@ public class c_Operation implements Screen, Initializable{
     }
 
     private void startCountdown(){
-        AnimationTimer timer = new AnimationTimer() {
+        timer = new AnimationTimer() {
             private long startTime;
 
             @Override
@@ -106,8 +109,10 @@ public class c_Operation implements Screen, Initializable{
 
                 // finish
                 if (elapsedMillis >= autoFinishTime) {
-                    stop();
-                    finish();
+                    if (timer != null) {
+                        stop();
+                        finish();
+                    }
                 }
             }
         };
@@ -115,15 +120,49 @@ public class c_Operation implements Screen, Initializable{
     }
 
     private void finish(){
+        if (timer != null) {
+            timer.stop();
+            timer = null;
+        }
+
         popup(mainPane, PopupGen.type.Success_closeonly, 
             "完了", isLendMode? "ご利用ありがとうございます。": "ご利用ありがとうございました。",
             5000,
             (result) -> {
-                // TODO send api
+                send_db_api(false);
                 Main.resetUser();
                 c_PortIdSelection.staticReset();
                 changeScreen("/fxml/screen/StartWithAuthentication.fxml");
             });
+    }
+
+    private void send_db_api( boolean isCancelAction ){
+        // portlendingstate
+        if(!isCancelAction){
+            try {
+                String url = "http://127.0.0.1:5000/api/portlendingstate/edit";
+                String body = String.format("{\"tag_id\": \"%s\", \"port_id\": %d, \"is_lent\": %d}", 
+                    Main.getUser().getTagId(), selectedPortId, isLendMode? 1 : 0);
+                HttpIO httpIO = new HttpIO("POST", url, body);
+                httpIO.post();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        // lendinglog
+        try {
+            java.util.Date date = new java.util.Date();
+            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+            String url = "http://127.0.0.1:5000/api/lendinglog/add";
+            String body = String.format("{\"tag_id\": \"%s\", \"port_id\": %d, \"is_lent\": %d, \"time\": \"%s\"}", 
+                Main.getUser().getTagId(), selectedPortId, isCancelAction? -1 : isLendMode? 1 : 0, sdf.format(date));
+            HttpIO httpIO = new HttpIO("POST", url, body);
+            httpIO.post();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -161,7 +200,7 @@ public class c_Operation implements Screen, Initializable{
                                     "キャンセルされました", ( isLendMode ? "鍵穴を抜いたままにしないようご注意ください。" : "鍵穴を挿していないことをご確認ください。" ),
                                     10000,
                                     (result2) -> {
-                                        // TODO send api
+                                        send_db_api(true);
                                         Main.resetUser();
                                         c_PortIdSelection.staticReset();
                                         changeScreen("/fxml/screen/StartWithAuthentication.fxml");
