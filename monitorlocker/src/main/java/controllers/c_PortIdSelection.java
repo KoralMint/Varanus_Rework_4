@@ -37,9 +37,11 @@ public class c_PortIdSelection implements Screen, Initializable {
     private static boolean firstTime = true;
     private static int selectedPortId;
     private static boolean isLendMode = true;
+    private static short operationMode = 0;
     Map<Integer, String> lendingPortsMap;
     public static int getSelectedPortId(){ return selectedPortId; }
     public static boolean getIsLendMode(){ return isLendMode; }
+    public static short getOperationMode(){ return operationMode; };
 
     //---------------------------------------------------------------------//
 
@@ -148,6 +150,12 @@ public class c_PortIdSelection implements Screen, Initializable {
         isLendMode = true;
     }
 
+    public static void staticReset(){
+        firstTime = true;
+        selectedPortId = 0;
+        isLendMode = true;
+    }
+
     @Override
     public void changeScreen(String fxml) {
         ScreenChanger sc = new ScreenChanger();
@@ -164,11 +172,14 @@ public class c_PortIdSelection implements Screen, Initializable {
                             // lend
                             // continue
                             System.out.println("Operation: lend");
+                            operationMode = 0;
+                            changeScreen("/fxml/screen/Operation.fxml");
                         }else{
                             // return
                             if( lendingPortsMap.get(selectedPortId).equals(Main.getUser().getUserName())){ // user is owner 
                                 // continue
                                 System.out.println("Operation: return");
+                                operationMode = 1;
                                 changeScreen("/fxml/screen/Operation.fxml");
                             }else{
                                 popup(mainPane,PopupGen.type.Caution_selectable,
@@ -179,6 +190,7 @@ public class c_PortIdSelection implements Screen, Initializable {
                                     if((short)result == 1){
                                         // continue
                                         System.out.println("Operation: return ( as proxy )");
+                                        operationMode = 2;
                                         changeScreen("/fxml/screen/Operation.fxml");
                                     }else{
                                         // do nothing
@@ -196,6 +208,7 @@ public class c_PortIdSelection implements Screen, Initializable {
                         -1,
                         (result) -> { 
                             reset();
+                            Main.resetUser();
                             changeScreen("/fxml/screen/StartWithAuthentication.fxml");
                         });
                     }

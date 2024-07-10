@@ -38,7 +38,6 @@ public interface Screen extends Mutual{
         ppFuture.whenComplete( (result, ex) -> {
             ppWait.shutdown();
             popupGen.close();
-            System.out.println("runするでぇ");
             if (onClose != null) onClose.run(result);
         });
     }

@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.shape.Arc?>
 <?import javafx.scene.shape.Polygon?>
@@ -85,46 +86,6 @@
                         <RowConstraints minHeight="10.0" prefHeight="90.0" valignment="CENTER" vgrow="NEVER" />
                     </rowConstraints>
                      <children>
-                        <AnchorPane maxWidth="710.0" prefHeight="74.0" prefWidth="21.0" style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="1">
-                           <GridPane.margin>
-                              <Insets bottom="7.5" left="7.5" right="7.5" top="7.5" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane maxWidth="710.0" prefHeight="74.0" prefWidth="21.0" style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                           <GridPane.margin>
-                              <Insets bottom="7.5" left="7.5" right="7.5" top="7.5" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane maxWidth="710.0" prefHeight="74.0" prefWidth="21.0" style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                           <GridPane.margin>
-                              <Insets bottom="7.5" left="7.5" right="7.5" top="7.5" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane maxWidth="710.0" prefHeight="74.0" prefWidth="21.0" style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                           <GridPane.margin>
-                              <Insets bottom="7.5" left="7.5" right="7.5" top="7.5" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane maxWidth="710.0" prefHeight="74.0" prefWidth="21.0" style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="3">
-                           <GridPane.margin>
-                              <Insets bottom="7.5" left="7.5" right="7.5" top="7.5" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane maxWidth="710.0" prefHeight="74.0" prefWidth="21.0" style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                           <GridPane.margin>
-                              <Insets bottom="7.5" left="7.5" right="7.5" top="7.5" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane maxWidth="710.0" prefHeight="74.0" prefWidth="21.0" style="-fx-background-color: #ff7373; -fx-background-radius: 10;" GridPane.columnIndex="3" GridPane.rowIndex="2">
-                           <GridPane.margin>
-                              <Insets bottom="7.5" left="7.5" right="7.5" top="7.5" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane maxWidth="710.0" prefHeight="74.0" prefWidth="21.0" style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="3" GridPane.rowIndex="3">
-                           <GridPane.margin>
-                              <Insets bottom="7.5" left="7.5" right="7.5" top="7.5" />
-                           </GridPane.margin>
-                        </AnchorPane>
                         <Polygon rotate="-90.0" scaleX="0.5" scaleY="0.4" stroke="#ffffff00" strokeType="INSIDE" GridPane.columnIndex="4" GridPane.rowIndex="2">
                           <points>
                             <Double fx:value="-50.0" />
@@ -215,6 +176,67 @@
                               <Font name="System Bold" size="40.0" />
                            </font>
                         </Text>
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="1">
+                           <GridPane.margin>
+                              <Insets bottom="7.5" left="7.5" right="7.5" top="7.5" />
+                           </GridPane.margin>
+                        </Pane>
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <GridPane.margin>
+                              <Insets bottom="7.5" left="7.5" right="7.5" top="7.5" />
+                           </GridPane.margin>
+                        </Pane>
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <GridPane.margin>
+                              <Insets bottom="7.5" left="7.5" right="7.5" top="7.5" />
+                           </GridPane.margin>
+                        </Pane>
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <GridPane.margin>
+                              <Insets bottom="7.5" left="7.5" right="7.5" top="7.5" />
+                           </GridPane.margin>
+                        </Pane>
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="3">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <GridPane.margin>
+                              <Insets bottom="7.5" left="7.5" right="7.5" top="7.5" />
+                           </GridPane.margin>
+                        </Pane>
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <GridPane.margin>
+                              <Insets bottom="7.5" left="7.5" right="7.5" top="7.5" />
+                           </GridPane.margin>
+                        </Pane>
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <GridPane.margin>
+                              <Insets bottom="7.5" left="7.5" right="7.5" top="7.5" />
+                           </GridPane.margin>
+                        </Pane>
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #000000; -fx-background-radius: 10;" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <GridPane.margin>
+                              <Insets bottom="7.5" left="7.5" right="7.5" top="7.5" />
+                           </GridPane.margin>
+                        </Pane>
                      </children>
                   </GridPane>
                </children>

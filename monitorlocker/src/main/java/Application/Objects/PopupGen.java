@@ -73,7 +73,7 @@ public class PopupGen {
             Platform.runLater(() -> { parent.getChildren().remove(nodeToRemove); });
             System.out.println("popup closing");
         }else{
-            // System.err.println("id: popup_pane not found");
+            System.err.println("id: popup_pane not found");
         }
     }
 }
