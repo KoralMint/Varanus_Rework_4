@@ -38,7 +38,7 @@ public class c_Operation implements Screen, Initializable{
     }
 
     private void setPortDisplay(){
-        txt_portId.setText(String.valueOf(selectedPortId));
+        txt_portId.setText(String.valueOf(selectedPortId + 1));
         txt_operationType.setText( operationMode == 0? "貸出" : operationMode == 1? "返却" : "代理返却" );
         for (Node node : grid_portPosition.getChildren()) {
             // get column&row
