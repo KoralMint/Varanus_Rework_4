@@ -3,6 +3,7 @@ package controllers;
 import controllers.common.Screen;
 import Application.Main;
 import Application.Objects.*;
+import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -22,6 +23,8 @@ public class c_Operation implements Screen, Initializable{
     @FXML private Text txt_autoFInishInteraction;
     @FXML private Text txt_operationType;
     @FXML private Text txt_portId;
+    
+    public static int autoFinishTime = 60000;
 
     private int selectedPortId;
     private boolean isLendMode = true;
@@ -35,6 +38,8 @@ public class c_Operation implements Screen, Initializable{
         isLendMode = c_PortIdSelection.getIsLendMode();
         operationMode = c_PortIdSelection.getOperationMode();
         setPortDisplay();
+        
+        startCountdown();
     }
 
     private void setPortDisplay(){
@@ -71,6 +76,56 @@ public class c_Operation implements Screen, Initializable{
         }
     }
 
+    private void startCountdown(){
+        AnimationTimer timer = new AnimationTimer() {
+            private long startTime;
+
+            @Override
+            public void start(){
+                super.start();
+                startTime = System.currentTimeMillis();
+            }
+
+            @Override
+            public void handle(long now){
+                long currentTime = System.currentTimeMillis();
+                long elapsedMillis = currentTime - startTime;
+                // update arc
+
+                double progress = elapsedMillis / (double)autoFinishTime;
+                long angle = (long)(progress * 360);
+                double startAngle = (90 - progress * 360);
+
+                arc_autoFinish.setStartAngle(startAngle);
+                arc_autoFinish.setLength(angle);
+
+                // update text
+                txt_autoFInishInteraction.setText(
+                    String.format("%d 秒後に自動で終了します", (autoFinishTime - elapsedMillis) / 1000)
+                );
+
+                // finish
+                if (elapsedMillis >= autoFinishTime) {
+                    stop();
+                    finish();
+                }
+            }
+        };
+        timer.start();
+    }
+
+    private void finish(){
+        popup(mainPane, PopupGen.type.Success_closeonly, 
+            "完了", isLendMode? "ご利用ありがとうございます。": "ご利用ありがとうございました。",
+            5000,
+            (result) -> {
+                // TODO send api
+                Main.resetUser();
+                c_PortIdSelection.staticReset();
+                changeScreen("/fxml/screen/StartWithAuthentication.fxml");
+            });
+    }
+
     @Override
     public void reset() {
         updateKeyBinding();
@@ -91,15 +146,7 @@ public class c_Operation implements Screen, Initializable{
                 case Z: // Blue
                     // finish
                     System.out.println("Finish");
-                    popup(mainPane, PopupGen.type.Success_closeonly, 
-                        "完了", isLendMode? "ご利用ありがとうございます。": "ご利用ありがとうございました。",
-                        5000,
-                        (result) -> {
-                            // TODO send api
-                            Main.resetUser();
-                            c_PortIdSelection.staticReset();
-                            changeScreen("/fxml/screen/StartWithAuthentication.fxml");
-                        });
+                    finish();
                     break;
                 case X: // Red
                     // cancel
