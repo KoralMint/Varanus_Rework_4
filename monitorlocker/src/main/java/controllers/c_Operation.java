@@ -140,7 +140,8 @@ public class c_Operation implements Screen, Initializable{
         // portlendingstate
         if(!isCancelAction){
             try {
-                String url = "http://127.0.0.1:5000/api/portlendingstate/edit";
+                if (!Main.isHostAvailable()) throw new Exception("db_api_host not available");
+                String url = Main.db_api_host+"/api/portlendingstate/edit";
                 String body = String.format("{\"tag_id\": \"%s\", \"port_id\": %d, \"is_lent\": %d}", 
                     Main.getUser().getTagId(), selectedPortId, isLendMode? 1 : 0);
                 HttpIO httpIO = new HttpIO("POST", url, body);
@@ -155,7 +156,8 @@ public class c_Operation implements Screen, Initializable{
             java.util.Date date = new java.util.Date();
             java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-            String url = "http://127.0.0.1:5000/api/lendinglog/add";
+            if (!Main.isHostAvailable()) throw new Exception("db_api_host not available");
+            String url = Main.db_api_host+"/api/lendinglog/add";
             String body = String.format("{\"tag_id\": \"%s\", \"port_id\": %d, \"is_lent\": %d, \"time\": \"%s\"}", 
                 Main.getUser().getTagId(), selectedPortId, isCancelAction? -1 : isLendMode? 1 : 0, sdf.format(date));
             HttpIO httpIO = new HttpIO("POST", url, body);

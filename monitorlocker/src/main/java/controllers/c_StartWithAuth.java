@@ -52,7 +52,8 @@ public class c_StartWithAuth implements Screen, Initializable {
                 System.out.print("読取成功 - ");
                 
                 try{
-                    HttpIO getUser = new HttpIO("http://127.0.0.1:5000/api/userdata/fetch");
+                    if (!Main.isHostAvailable()) throw new Exception("db_api_host not available");
+                    HttpIO getUser = new HttpIO(Main.db_api_host+"/api/userdata/fetch");
                     String userdataReq = "[\"user_name\", \"user_id\", \"user_authority\", \"email\", \"discord_id\"]";
                     JsonNode apiResponce = getUser.post( String.format("{\"tag_id\": \"%s\", \"request\":%s}", nfc.getTagId(), userdataReq) );
                     if (apiResponce.get("stats").asText().equals("ok")){

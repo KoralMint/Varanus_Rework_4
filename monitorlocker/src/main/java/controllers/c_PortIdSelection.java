@@ -51,7 +51,8 @@ public class c_PortIdSelection implements Screen, Initializable {
 
         // Get Lending State
         try{
-            HttpIO get = new HttpIO("http://127.0.0.1:5000/api/portlendingstate/fetch");
+            if (!Main.isHostAvailable()) throw new Exception("db_api_host not available");
+            HttpIO get = new HttpIO(Main.db_api_host+"/api/portlendingstate/fetch");
             JsonNode apiResponce = get.get();
             
             if(apiResponce == null || apiResponce.get("result") == null) {

@@ -60,7 +60,8 @@ public class c_LendStates implements Initializable, Screen{
 				
 			
 			try {
-				HttpIO get = new HttpIO("http://127.0.0.1:5000/api/portlendingstate/fetch");
+				if (!Main.isHostAvailable()) throw new Exception("db_api_host not available");
+				HttpIO get = new HttpIO(Main.db_api_host+"/api/portlendingstate/fetch");
             	JsonNode apiResponce = get.get();
 				// System.out.println(apiResponce.toString());
 				for ( JsonNode n : apiResponce.get("result")) {

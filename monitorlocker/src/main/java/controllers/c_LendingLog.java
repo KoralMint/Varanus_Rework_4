@@ -40,7 +40,9 @@ public class c_LendingLog implements Initializable, Screen{
                 node.put("limit", 9);
                 node.put("from", -1);
                 node.put("to", -10);
-				HttpIO post = new HttpIO("http://127.0.0.1:5000/api/lendinglog/fetch", mapper.writeValueAsString(node));
+
+                if (!Main.isHostAvailable()) throw new Exception("db_api_host not available");
+				HttpIO post = new HttpIO(Main.db_api_host+"/api/lendinglog/fetch", mapper.writeValueAsString(node));
             	JsonNode apiResponce = post.post();
 
                 if (!apiResponce.has("result"))
