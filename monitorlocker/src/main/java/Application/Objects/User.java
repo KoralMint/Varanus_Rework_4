@@ -32,8 +32,6 @@ public class User {
         this.discord_id = discord_id;
 
         checkUserdataFetchLevel();
-        System.out.printf("Userdata fetch level: %d (%s)\n", userdataFetchLevel,
-            (userdataFetchLevel==2?"full": userdataFetchLevel==1?"partial": "empty"));
     }
     public User(String tag_id, String user_name, String user_id) {
         this(tag_id, user_name, user_id, 0, "", "");
@@ -42,7 +40,7 @@ public class User {
         this("","","",0,"","");
     }
 
-    private void checkUserdataFetchLevel() {
+    public void checkUserdataFetchLevel() {
         if(tag_id != "" && user_id != "" && user_name != "") {
             if(email != "" && discord_id != "")
             {
@@ -53,6 +51,8 @@ public class User {
         }else{
             userdataFetchLevel = 0;
         }
+        System.out.printf("Userdata fetch level: %d (%s)\n", userdataFetchLevel,
+            (userdataFetchLevel==2?"full": userdataFetchLevel==1?"partial": "empty"));
     }
 
     

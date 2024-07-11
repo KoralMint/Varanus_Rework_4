@@ -7,15 +7,20 @@ import java.util.Properties;
 
 public class ConfigLoader {
     private Properties properties = new Properties();
+    private boolean doOutput = false;
+
+    public void setDoOutput(boolean doOutput) {
+        this.doOutput = doOutput;
+    }
 
     public void loadConfig(String filePath) {
         try (InputStream input = new FileInputStream(filePath)) {
+            if (doOutput) System.out.println("Loading config from " + filePath);
             properties.load(input);
         } catch (IOException ex) {
             // make new file
             try {
-                properties.setProperty("auto-generated", "true");
-                properties.store(new java.io.FileOutputStream(filePath), null);
+                properties.store(new java.io.FileOutputStream(filePath), "auto generated config file");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -23,10 +28,14 @@ public class ConfigLoader {
     }
 
     public String getProperty(String key) {
-        return properties.getProperty(key);
+        String value = properties.getProperty(key);
+        if (doOutput) System.out.println("- " + key + " : " + value);
+        return value;
     }
 
     public String getProperty(String key, String defaultValue) {
-        return properties.getProperty(key, defaultValue);
+        String value = properties.getProperty(key, defaultValue);
+        if (doOutput) System.out.println("- " + key + " : " + value);
+        return value;
     }
 }

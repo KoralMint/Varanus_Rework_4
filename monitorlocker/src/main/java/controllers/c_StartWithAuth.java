@@ -12,6 +12,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
@@ -42,14 +43,49 @@ public class c_StartWithAuth implements Screen, Initializable {
 
         nfcWait.waitForTask(() -> {
 
+            AnimationTimer timer = new AnimationTimer() {
+                // cycle bg_step2 hightlight
+                private long startTime;
+                private long timeout = 10000;
+                private int bpm;
+
+                @Override
+                public void start(){
+                    super.start();
+                    startTime = System.currentTimeMillis();
+                    bpm = 60;
+                }
+    
+                @Override
+                public void handle(long now){
+                    long currentTime = System.currentTimeMillis();
+                    long elapsedMillis = currentTime - startTime;
+                    
+                    // color gradient: white & #ccdeff
+                    int r = 0xcc, g = 0xde, b = 0xff;
+                    int r2 = 0xff, g2 = 0xff, b2 = 0xff;
+                    double lerpSin = (1 - Math.cos(elapsedMillis / 30000.0 * Math.PI * bpm)) / 2;
+                    int r3 = (int)(r + lerpSin * (r2 - r));
+                    int g3 = (int)(g + lerpSin * (g2 - g));
+                    int b3 = (int)(b + lerpSin * (b2 - b));
+                    bg_step2.setStyle(String.format("-fx-background-color: #%02x%02x%02x;", r3, g3, b3)); 
+
+                    if(elapsedMillis > timeout-3000){
+                        bpm = 144;
+                    }
+                }
+            };
+            timer.start();
+
             NfcController nfc = new NfcController();
             // 認証中
             status = 1;
             boolean _success = nfc.readNfc();
+            timer.stop();
             System.out.println("NFC: "+nfc.getStatus());
             if(_success && nfc.hasTagId()) {
                 // 読取成功
-                System.out.print("読取成功 - ");
+                System.out.println("読取成功");
                 
                 try{
                     if (!Main.isHostAvailable()) throw new Exception("db_api_host not available");
@@ -71,6 +107,7 @@ public class c_StartWithAuth implements Screen, Initializable {
                         );
                         Main.setUser(_user);
                         System.out.printf( "Welcome %s ( %s ) - %s\n", _user.getUserName(), _user.getUserId(), _user.getTagId() );
+                        _user.checkUserdataFetchLevel();
                     }else{
                         // 認証失敗
                         status = 3;
@@ -89,7 +126,7 @@ public class c_StartWithAuth implements Screen, Initializable {
                     System.out.println("リーダータイムアウト");
                     status = 5;
                 } else if (nfc.getStatusCode() == -2){
-                    System.out.println("カードタイプ不一致");
+                    System.out.println("カードタイプ不一致 / リーダーなし");
                     status = 6;
                 } else if (nfc.getStatusCode() == -3){
                     System.out.println("中断");

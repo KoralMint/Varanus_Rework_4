@@ -3,7 +3,6 @@ package Application;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import Application.Objects.*;
-
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -64,29 +63,26 @@ public class Main extends Application {
     ///////////////////////////////////////////////////
 
     private void load_config(){
-        
         ConfigLoader configLoader = new ConfigLoader();
-
-        // 開発環境
-        // configLoader.loadConfig("src/main/resources/config.properties");
-
-        // 実行環境
+        configLoader.setDoOutput(true);
         configLoader.loadConfig("config.properties");
 
-        db_api_host = configLoader.getProperty("db_api_host");
-        System.out.println(db_api_host);
+        Main.db_api_host = configLoader.getProperty("db_api_host");
     }
 
-    private static boolean isHostAvailable_cleared = false;
+    private static boolean isHostAvailable_passed = false;
     public static boolean isHostAvailable(){
-        if (db_api_host == null) return false;
-        if (isHostAvailable_cleared) return true;
+        if (db_api_host == null) {
+            isHostAvailable_passed = false;
+            return false;
+        }
+        if (isHostAvailable_passed) return true; // サーバーが落ちた時に対応できないかも。
 
         try {
-            HttpIO get = new HttpIO(db_api_host+"/connection_test");
+        HttpIO get = new HttpIO(db_api_host+"/connection_test");
             JsonNode apiResponce = get.get();
             if (apiResponce.get("stats").asText().equals("ok")){
-                isHostAvailable_cleared = true;
+                isHostAvailable_passed = true;
                 return true;
             } else
                 return false;
