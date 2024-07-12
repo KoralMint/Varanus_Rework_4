@@ -3,6 +3,7 @@ package Application;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import Application.Objects.*;
+import controllers.c_StartWithAuth;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -68,6 +69,7 @@ public class Main extends Application {
         configLoader.loadConfig("config.properties");
 
         Main.db_api_host = configLoader.getProperty("db_api_host");
+        c_StartWithAuth.allow_nfcfail_skip = Boolean.parseBoolean(configLoader.getProperty("allow_nfcfail_skip", "false"));
     }
 
     private static boolean isHostAvailable_passed = false;

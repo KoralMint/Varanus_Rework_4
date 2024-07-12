@@ -25,6 +25,7 @@ public class c_StartWithAuth implements Screen, Initializable {
     @FXML private Text text_description;
 
     private int status = 0; // 0: 操作待ち, 1: 認証待ち, 2: 認証成功 | 3: 認証失敗, 4: 認証エラー | 5: タイムアウト, 6: カードタイプ不一致 , 7: 中断
+    public static boolean allow_nfcfail_skip = false;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -61,7 +62,7 @@ public class c_StartWithAuth implements Screen, Initializable {
                     long currentTime = System.currentTimeMillis();
                     long elapsedMillis = currentTime - startTime;
                     
-                    // color gradient: white & #ccdeff
+                    // color fade inout: white & #ccdeff
                     int r = 0xcc, g = 0xde, b = 0xff;
                     int r2 = 0xff, g2 = 0xff, b2 = 0xff;
                     double lerpSin = (1 - Math.cos(elapsedMillis / 30000.0 * Math.PI * bpm)) / 2;
@@ -156,47 +157,56 @@ public class c_StartWithAuth implements Screen, Initializable {
             changeScreen("/fxml/screen/PortIdSelection.fxml");
         }else{
             String title, message, popupType; int timeout;
+            boolean skipable = allow_nfcfail_skip;
             switch (status) {
                 case 3:
                     title = "認証失敗";
-                    message = "ユーザーが見つかりませんでした。\n続行すると、貸出/返却処理ができません。\n続行しますか？";
+                    message = "ユーザーが見つかりませんでした。";
                     popupType = PopupGen.type.Caution_selectable;
                     timeout = -1;
+                    skipable = true;
                     break;            
                 case 4:
                     title = "認証エラー";
-                    message = "サーバーとの通信に失敗しました。\n";
+                    message = "サーバーとの通信に失敗しました。";
                     popupType = PopupGen.type.Error_closeonly;
                     timeout = 3000;
                     break;
                 case 5:
                     title = "タイムアウト";
-                    message = "リーダーとの通信がタイムアウトしました。\n";
+                    message = "リーダーとの通信がタイムアウトしました。";
                     popupType = PopupGen.type.Error_closeonly;
                     timeout = 3000;    
                     break;
                 case 6:
                     title = "カードタイプ不一致";
-                    message = "対応していないカードが検出されました。\n";
+                    message = "対応していないカードが検出されました。";
                     popupType = PopupGen.type.Error_closeonly;
                     timeout = 3000;
                     break;
                 case 7:
                     title = "中断";
-                    message = "操作が中断されました。\n";
+                    message = "操作が中断されました。";
                     popupType = PopupGen.type.Caution_continueonly;
                     timeout = 3000;
+                    skipable = false;
                     break;
                 default:
                     title = "エラー";
-                    message = "不明なエラーが発生しました。\n";
+                    message = "不明なエラーが発生しました。";
                     popupType = PopupGen.type.Error_closeonly;
                     timeout = 3000;
                     break;
             }
+            
+            if (skipable) {
+                popupType = PopupGen.type.Caution_selectable;
+                message += "\n続行すると、貸出/返却処理ができません。\n続行しますか？";
+                timeout = -1;
+            }
 
             popup( mainPane, popupType, title, message, timeout, (result) -> {
-                if ( status == 3 && (short)result == 1 ){
+                if ( (short)result == 1 ){
                     changeScreen("/fxml/screen/PortIdSelection.fxml");
                 } else {
                     reset();
