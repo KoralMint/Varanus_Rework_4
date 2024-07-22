@@ -9,6 +9,7 @@ import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Optional;
 
 public class NfcController {
 
@@ -63,34 +64,49 @@ public class NfcController {
     private String waitForNfc() {
         String data = "";
         try {
-            
-            // カレントワーキングディレクトリを取得
+                        // カレントワーキングディレクトリを取得
             Path currentDirectory = Paths.get(System.getProperty("user.dir"));
+
             // ワーキングディレクトリ内を再帰的に検索し、目的のファイル名を持つファイルを見つける
-            String filePath = Files.walk(currentDirectory)
-            .filter(path -> path.getFileName().toString().equals("wait_for_nfc.py"))
-            .findFirst().get().toString();
+            Optional<Path> filePathOpt = Files.walk(currentDirectory)
+                .filter(path -> path.getFileName().toString().equals("wait_for_nfc.py"))
+                .findFirst();
+
+            if (filePathOpt.isPresent()) {
+                String filePath = filePathOpt.get().toString();
+                System.out.println("ファイルのパス: " + filePath);
+
+                // Pythonスクリプトの呼び出し
+                ProcessBuilder pb = new ProcessBuilder("python3", filePath);
+                process = pb.start();
+                // プロセスの出力を処理するコードをここに追加できます
+
+                // Pythonスクリプトの出力を取得
+                InputStream inputStream = process.getInputStream();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    data = line;
+                    System.out.println("result :"+line); // 処理結果を表示する
+                }
+
+                // プロセスの終了を待機
+                int exitCode = process.waitFor();
+                process = null;
+                System.out.println("Pythonスクリプトの終了コード: " + exitCode);
             
-            // Pythonスクリプトの呼び出し
-            ProcessBuilder pb = new ProcessBuilder("python", filePath);
-            process = pb.start();
-
-            // Pythonスクリプトの出力を取得
-            InputStream inputStream = process.getInputStream();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-            String line;
-            while ((line = reader.readLine()) != null) {
-                data = line;
-                System.out.println("result :"+line); // 処理結果を表示する
+            } else {
+                System.out.println("指定されたファイルは見つかりませんでした。");
+                data = "-2";
             }
-
-            // プロセスの終了を待機
-            int exitCode = process.waitFor();
-            process = null;
-            System.out.println("Pythonスクリプトの終了コード: " + exitCode);
 
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
+        } finally {
+            if (process != null) {
+                process.destroy();
+            }
+            data = "-2";
         }
 
         return data;
