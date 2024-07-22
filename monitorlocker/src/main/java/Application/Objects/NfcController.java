@@ -4,8 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -112,19 +110,8 @@ public class NfcController {
         return data;
     }
 
-    public void terminate() throws IOException {
-    	if(process != null) {
-    		// Pythonプロセスへのシグナル送信用のライターを取得
-    		OutputStream outputStream = process.getOutputStream();
-    		PrintWriter printWriter = new PrintWriter(outputStream);
-
-    		// Pythonプロセスにterminate_process()関数を呼び出すシグナルを送信
-    		printWriter.write("terminate\n");
-    		printWriter.flush(); // バッファをフラッシュしてデータを送信
-    		System.out.println("cancelled");
-
-    	}else
-    		System.out.println("terminate error: process is null");
+    public void terminate(){
+        System.err.println("* terminate function is abolished.");
     }
 
 }
