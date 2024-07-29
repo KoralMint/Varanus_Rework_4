@@ -103,8 +103,8 @@ public class NfcController {
         } finally {
             if (process != null) {
                 process.destroy();
+                data = "-2";
             }
-            data = "-2";
         }
 
         return data;

@@ -19,6 +19,7 @@ public class HttpIO {
     private String body;
     private boolean setDoInput, setDoOutput;
 
+    @SuppressWarnings("deprecation")
     public HttpIO(String method, String url, String body, boolean setDoInput, boolean setDoOutput){
         try {
             this.method = method;
